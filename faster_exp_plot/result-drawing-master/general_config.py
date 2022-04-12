@@ -135,24 +135,48 @@ GeneralConfig['simple_world_comm']['min_y'] =  -77.28
 GeneralConfig['simple_world_comm']['y_major_loc'] = 20
 GeneralConfig['simple_world_comm']['x_major_loc'] = 20000
 
-config_from_statis = {'simple_adversary': {'max_y': 1.5160000324249268,
-  'min_y': -21.136999130249023},
- 'simple': {'max_y': -4.203999996185303, 'min_y': -44.4630012512207},
- 'simple_tag': {'max_y': 117.18000030517578, 'min_y': -12.423999786376951},
- 'simple_world_comm': {'max_y': 48.84099960327149,
-  'min_y': -77.28900146484375},
- 'simple_spread': {'max_y': -97.52899932861328, 'min_y': -129.07200622558594},
- 'simple_speaker_listener': {'max_y': -13.418999671936035,
-  'min_y': -122.01300048828124},
- 'simple_push': {'max_y': -6.421999931335449, 'min_y': -30.56999969482422},
- 'simple_crypto': {'max_y': 23.18600082397461, 'min_y': -40.75199890136719}}
+config_from_statis = {'simple_adversary': {'max_y': 0,
+  'min_y': -20,
+  'mean_endy': -3.622999995946884,
+  'y_major_loc': 5},
+ 'simple': {'max_y': 0,
+  'min_y': -40,
+  'mean_endy': -5.476857117244175,
+  'y_major_loc': 10},
+ 'simple_tag': {'max_y': 60,
+  'min_y': -20,
+  'mean_endy': 5.078749895095825,
+  'y_major_loc': 20},
+ 'simple_world_comm': {'max_y': 60,
+  'min_y': -60,
+  'mean_endy': 25.607500076293945,
+  'y_major_loc': 30},
+ 'simple_spread': {'max_y': -90,
+  'min_y': -130,
+  'mean_endy': -102.2490005493164,
+  'y_major_loc': 10},
+ 'simple_speaker_listener': {'max_y': 0,
+  'min_y': -100,
+  'mean_endy': -24.63675022125244,
+  'y_major_loc': 25},
+ 'simple_push': {'max_y': 0,
+  'min_y': -40,
+  'mean_endy': -7.73800003528595,
+  'y_major_loc': 10},
+ 'simple_crypto': {'max_y': 20,
+  'min_y': -40,
+  'mean_endy': -9.475874841213226,
+  'y_major_loc': 15}}
+
+
+
 
 for k,v in config_from_statis.items():
   GeneralConfig[k]['max_y'] = v["max_y"]
   GeneralConfig[k]['min_y'] = v["min_y"]
+  GeneralConfig[k]['y_major_loc'] = v["y_major_loc"]
 
 
 for env, env_config in GeneralConfig.items():
     env_config['fig_title'] = env
     env_config['pic_filename'] = env + '.png'
-

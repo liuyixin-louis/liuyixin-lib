@@ -178,7 +178,7 @@ def plot_mean_and_CI(ax,
     line = ax.plot(x, mean, color=color_mean, lw=1,label=alg)
 
 
-def draw_single_env(all_csv_file_list, ax, task_config, env_config, max_step):
+def draw_single_env(all_csv_file_list, ax, task_config, env_config, max_step,end):
     for i in range(len(task_config['algorithms'])):
         print(task_config['algorithms'][i])
         x, mean, ub, lb = calc_mean_and_confidence(
@@ -214,7 +214,8 @@ def draw_single_env(all_csv_file_list, ax, task_config, env_config, max_step):
     ax.grid(alpha=0.3)  # add grid lines
     
     # legend
-    ax.legend(loc="upper right")
+    if end:
+        ax.legend(loc="lower right")
 
 
 def get_all_csv_filename(path):
@@ -257,7 +258,7 @@ def main(task_config, general_config):
         print(i)
         
         draw_single_env(all_algs_files, axes[i], task_config,
-                        general_config[env], task_config['env_steps'][i])
+                        general_config[env], task_config['env_steps'][i],end=(i==(len(task_config['envs'])-1)))
         # leg = fig.legend(
         #     labels=task_config['line_labels'],
         #     bbox_to_anchor=(0.85, 0.08),
@@ -266,6 +267,8 @@ def main(task_config, general_config):
     fig.tight_layout(pad=0.4)
     # for legobj in leg.legendHandles:
     #     legobj.set_linewidth(4.0)
+    # TODO: 删除空白的子图
+    plt.delaxes()
     plt.savefig(task_config['output_name'], dpi=300)
     # plt.show()
 
@@ -275,7 +278,7 @@ if __name__ == '__main__':
     plt.rcParams['figure.dpi'] = 300
     plt.rcParams["font.family"] = "Times New Roman"
     plt.rcParams["font.size"] = 8  # set global global font size
-    plt.rcParams["figure.figsize"] = (20, 20)  # set global fig size
+    plt.rcParams["figure.figsize"] = (12, 6.75)  # set global fig size
     general_config = deepcopy(GeneralConfig)
     # legend, minor axis, xlabel and ylabel functions are disabled to produce this template.
 
@@ -298,7 +301,7 @@ if __name__ == '__main__':
     # 
     task_config = {
         'subplot': (3, 3),
-        'root_path': '/ssd2/liuyixin04/workspace/backup/plot_dir',
+        'root_path': '/ssd2/liuyixin04/workspace/test-yixin/faster_exp_plot/plot_dir',
         'algorithms': ['MADDPG-continous','MADDPG-discrete'],
         'envs': [
                 'simple', 'simple_adversary', 'simple_crypto', 'simple_push',
