@@ -1,6 +1,8 @@
 cd $1
+lib="/opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib"
+pyt="/ssd2/liuyixin04/miniconda3/envs/py37_torch/bin/python"
 
-python generate_robust_em_random_pertub.py \
+$lib $pyt generate_robust_em_random_pertub.py \
     --arch resnet18 \
     --dataset cifar10 \
     --train-steps 5000 \
@@ -26,7 +28,7 @@ python generate_robust_em_random_pertub.py \
     --save-dir ./exp_data/cifar10/random-pertub-noise/rem8-4 \
     --save-name random_attack
 
-python train.py \
+$lib $pyt train.py \
     --arch resnet18 \
     --dataset cifar10 \
     --train-steps 40000 \
