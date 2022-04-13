@@ -4,7 +4,8 @@ import sys
 import logging
 import numpy as np
 import torch
-import cv2
+# import cv2
+from PIL import Image, ImageFilter
 import torchvision
 import torchvision.transforms as transforms
 
@@ -69,16 +70,28 @@ def get_transforms(dataset, train=True, is_tensor=True):
 
     return trans
 
+def PIL_filter(x,fitr):
+    if fitr == 'averaging':
+        x = Image.fromarray(x).filter(ImageFilter.Blur)
+    elif fitr == 'gaussian':
+        x = Image.fromarray(x).filter(ImageFilter.GaussianBlur)
+    elif fitr == 'median':
+        x = Image.fromarray(x).filter(ImageFilter.MedianFilter)
+    elif fitr == 'bilateral':
+        x = Image.fromarray(x).filter(ImageFilter.EDGE_ENHANCE)
+    return np.array(x)
 
 def get_filter(fitr):
-    if fitr == 'averaging':
-        return lambda x: cv2.blur(x, (3,3))
-    elif fitr == 'gaussian':
-        return lambda x: cv2.GaussianBlur(x, (3,3), 0)
-    elif fitr == 'median':
-        return lambda x: cv2.medianBlur(x, 3)
-    elif fitr == 'bilateral':
-        return lambda x: cv2.bilateralFilter(x, 9, 75, 75)
+    # if fitr == 'averaging':
+    #     return lambda x: cv2.blur(x, (3,3))
+    # elif fitr == 'gaussian':
+    #     return lambda x: cv2.GaussianBlur(x, (3,3), 0)
+    # elif fitr == 'median':
+    #     return lambda x: cv2.medianBlur(x, 3)
+    # elif fitr == 'bilateral':
+    #     return lambda x: cv2.bilateralFilter(x, 9, 75, 75)
+
+    return lambda x: PIL_filter(x,fitr)
 
     raise ValueError
 

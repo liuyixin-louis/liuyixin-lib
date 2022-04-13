@@ -24,7 +24,7 @@ $lib $pyt generate_robust_em_random_pertub.py \
     --samp-num 5 \
     --report-freq 1000 \
     --save-freq 1000 \
-    --data-dir ./data \
+    --data-dir ~/dataset/ \
     --save-dir ./exp_data/cifar10/random-pertub-noise/rem8-4 \
     --save-name random_attack
 
@@ -46,6 +46,6 @@ $lib $pyt train.py \
     --report-freq 1000 \
     --save-freq 100000 \
     --noise-path ./exp_data/cifar10/random-pertub-noise/rem8-4/random_attack-fin-def-noise.pkl \
-    --data-dir ./data \
+    --data-dir ~/dataset/ \
     --save-dir ./exp_data/cifar10/random-pertub/rem8-4/r4 \
     --save-name random_attack_train

@@ -1,0 +1,192 @@
+2022-04-13 21:32:23 root:INFO:  Arguments
+2022-04-13 21:32:23 root:INFO:      arch:                         resnet18
+2022-04-13 21:32:23 root:INFO:      dataset:                      cifar10
+2022-04-13 21:32:23 root:INFO:      train_steps:                  40000
+2022-04-13 21:32:23 root:INFO:      batch_size:                   8
+2022-04-13 21:32:23 root:INFO:      optim:                        sgd
+2022-04-13 21:32:23 root:INFO:      lr:                           0.1
+2022-04-13 21:32:23 root:INFO:      lr_decay_rate:                0.1
+2022-04-13 21:32:23 root:INFO:      lr_decay_freq:                16000
+2022-04-13 21:32:23 root:INFO:      weight_decay:                 0.0005
+2022-04-13 21:32:23 root:INFO:      momentum:                     0.9
+2022-04-13 21:32:23 root:INFO:      pgd_radius:                   4.0
+2022-04-13 21:32:23 root:INFO:      pgd_steps:                    10
+2022-04-13 21:32:23 root:INFO:      pgd_step_size:                0.8
+2022-04-13 21:32:23 root:INFO:      pgd_random_start:             True
+2022-04-13 21:32:23 root:INFO:      pgd_norm_type:                l-infty
+2022-04-13 21:32:23 root:INFO:      parallel:                     False
+2022-04-13 21:32:23 root:INFO:      local_rank:                   0
+2022-04-13 21:32:23 root:INFO:      cpu:                          False
+2022-04-13 21:32:23 root:INFO:      data_dir:                     /ssd2/liuyixin04/dataset/
+2022-04-13 21:32:23 root:INFO:      save_dir:                     ./exp_data/cifar10/random-pertub/rem8-4/r4
+2022-04-13 21:32:23 root:INFO:      save_name:                    random_attack_train
+2022-04-13 21:32:23 root:INFO:      data_mode:                    mix
+2022-04-13 21:32:23 root:INFO:      filter:                       None
+2022-04-13 21:32:23 root:INFO:      man_data_path:                None
+2022-04-13 21:32:23 root:INFO:      noise_path:                   ./exp_data/cifar10/random-pertub-noise/rem8-4/random_attack-fin-def-noise.pkl
+2022-04-13 21:32:23 root:INFO:      poi_idx_path:                 None
+2022-04-13 21:32:23 root:INFO:      resume_path:                  None
+2022-04-13 21:32:23 root:INFO:      perturb_freq:                 1
+2022-04-13 21:32:23 root:INFO:      report_freq:                  1000
+2022-04-13 21:32:23 root:INFO:      save_freq:                    100000
+2022-04-13 21:32:23 root:INFO:  
+2022-04-13 21:34:06 root:INFO:  step [1000/40000]:
+2022-04-13 21:34:06 root:INFO:  adv_acc 12.50% 	 adv_loss 2.279e+00
+2022-04-13 21:34:06 root:INFO:  test_acc  11.10% 	 test_loss  2.311e+00
+2022-04-13 21:34:06 root:INFO:  
+2022-04-13 21:35:41 root:INFO:  step [2000/40000]:
+2022-04-13 21:35:41 root:INFO:  adv_acc 25.00% 	 adv_loss 2.509e+00
+2022-04-13 21:35:41 root:INFO:  test_acc  25.17% 	 test_loss  2.004e+00
+2022-04-13 21:35:41 root:INFO:  
+2022-04-13 21:37:16 root:INFO:  step [3000/40000]:
+2022-04-13 21:37:16 root:INFO:  adv_acc 12.50% 	 adv_loss 2.234e+00
+2022-04-13 21:37:16 root:INFO:  test_acc  27.39% 	 test_loss  1.991e+00
+2022-04-13 21:37:16 root:INFO:  
+2022-04-13 21:38:50 root:INFO:  step [4000/40000]:
+2022-04-13 21:38:50 root:INFO:  adv_acc 37.50% 	 adv_loss 2.082e+00
+2022-04-13 21:38:50 root:INFO:  test_acc  27.04% 	 test_loss  1.993e+00
+2022-04-13 21:38:50 root:INFO:  
+2022-04-13 21:40:26 root:INFO:  step [5000/40000]:
+2022-04-13 21:40:26 root:INFO:  adv_acc 12.50% 	 adv_loss 2.617e+00
+2022-04-13 21:40:26 root:INFO:  test_acc  32.69% 	 test_loss  1.857e+00
+2022-04-13 21:40:26 root:INFO:  
+2022-04-13 21:42:00 root:INFO:  step [6000/40000]:
+2022-04-13 21:42:00 root:INFO:  adv_acc 25.00% 	 adv_loss 2.030e+00
+2022-04-13 21:42:00 root:INFO:  test_acc  30.88% 	 test_loss  1.877e+00
+2022-04-13 21:42:00 root:INFO:  
+2022-04-13 21:43:35 root:INFO:  step [7000/40000]:
+2022-04-13 21:43:35 root:INFO:  adv_acc 0.00% 	 adv_loss 2.514e+00
+2022-04-13 21:43:35 root:INFO:  test_acc  29.40% 	 test_loss  1.869e+00
+2022-04-13 21:43:35 root:INFO:  
+2022-04-13 21:45:10 root:INFO:  step [8000/40000]:
+2022-04-13 21:45:10 root:INFO:  adv_acc 37.50% 	 adv_loss 1.708e+00
+2022-04-13 21:45:10 root:INFO:  test_acc  31.06% 	 test_loss  1.765e+00
+2022-04-13 21:45:10 root:INFO:  
+2022-04-13 21:46:45 root:INFO:  step [9000/40000]:
+2022-04-13 21:46:45 root:INFO:  adv_acc 12.50% 	 adv_loss 2.088e+00
+2022-04-13 21:46:45 root:INFO:  test_acc  31.95% 	 test_loss  1.783e+00
+2022-04-13 21:46:45 root:INFO:  
+2022-04-13 21:48:20 root:INFO:  step [10000/40000]:
+2022-04-13 21:48:20 root:INFO:  adv_acc 12.50% 	 adv_loss 2.092e+00
+2022-04-13 21:48:20 root:INFO:  test_acc  30.49% 	 test_loss  1.817e+00
+2022-04-13 21:48:20 root:INFO:  
+2022-04-13 21:49:55 root:INFO:  step [11000/40000]:
+2022-04-13 21:49:55 root:INFO:  adv_acc 12.50% 	 adv_loss 2.017e+00
+2022-04-13 21:49:55 root:INFO:  test_acc  31.26% 	 test_loss  1.848e+00
+2022-04-13 21:49:55 root:INFO:  
+2022-04-13 21:51:30 root:INFO:  step [12000/40000]:
+2022-04-13 21:51:30 root:INFO:  adv_acc 25.00% 	 adv_loss 2.394e+00
+2022-04-13 21:51:30 root:INFO:  test_acc  31.73% 	 test_loss  1.798e+00
+2022-04-13 21:51:30 root:INFO:  
+2022-04-13 21:53:05 root:INFO:  step [13000/40000]:
+2022-04-13 21:53:05 root:INFO:  adv_acc 25.00% 	 adv_loss 2.115e+00
+2022-04-13 21:53:05 root:INFO:  test_acc  25.18% 	 test_loss  1.918e+00
+2022-04-13 21:53:05 root:INFO:  
+2022-04-13 21:54:40 root:INFO:  step [14000/40000]:
+2022-04-13 21:54:40 root:INFO:  adv_acc 25.00% 	 adv_loss 1.974e+00
+2022-04-13 21:54:40 root:INFO:  test_acc  28.81% 	 test_loss  1.793e+00
+2022-04-13 21:54:40 root:INFO:  
+2022-04-13 21:56:14 root:INFO:  step [15000/40000]:
+2022-04-13 21:56:14 root:INFO:  adv_acc 37.50% 	 adv_loss 1.769e+00
+2022-04-13 21:56:14 root:INFO:  test_acc  40.18% 	 test_loss  1.669e+00
+2022-04-13 21:56:14 root:INFO:  
+2022-04-13 21:57:49 root:INFO:  step [16000/40000]:
+2022-04-13 21:57:49 root:INFO:  adv_acc 0.00% 	 adv_loss 2.511e+00
+2022-04-13 21:57:49 root:INFO:  test_acc  37.55% 	 test_loss  1.743e+00
+2022-04-13 21:57:49 root:INFO:  
+2022-04-13 21:59:23 root:INFO:  step [17000/40000]:
+2022-04-13 21:59:23 root:INFO:  adv_acc 62.50% 	 adv_loss 1.365e+00
+2022-04-13 21:59:23 root:INFO:  test_acc  49.07% 	 test_loss  1.406e+00
+2022-04-13 21:59:23 root:INFO:  
+2022-04-13 22:00:57 root:INFO:  step [18000/40000]:
+2022-04-13 22:00:57 root:INFO:  adv_acc 75.00% 	 adv_loss 1.485e+00
+2022-04-13 22:00:57 root:INFO:  test_acc  51.27% 	 test_loss  1.371e+00
+2022-04-13 22:00:57 root:INFO:  
+2022-04-13 22:02:30 root:INFO:  step [19000/40000]:
+2022-04-13 22:02:30 root:INFO:  adv_acc 37.50% 	 adv_loss 1.972e+00
+2022-04-13 22:02:30 root:INFO:  test_acc  51.69% 	 test_loss  1.343e+00
+2022-04-13 22:02:30 root:INFO:  
+2022-04-13 22:04:03 root:INFO:  step [20000/40000]:
+2022-04-13 22:04:03 root:INFO:  adv_acc 37.50% 	 adv_loss 1.775e+00
+2022-04-13 22:04:03 root:INFO:  test_acc  53.36% 	 test_loss  1.271e+00
+2022-04-13 22:04:03 root:INFO:  
+2022-04-13 22:05:36 root:INFO:  step [21000/40000]:
+2022-04-13 22:05:36 root:INFO:  adv_acc 62.50% 	 adv_loss 1.263e+00
+2022-04-13 22:05:36 root:INFO:  test_acc  53.00% 	 test_loss  1.303e+00
+2022-04-13 22:05:36 root:INFO:  
+2022-04-13 22:07:09 root:INFO:  step [22000/40000]:
+2022-04-13 22:07:09 root:INFO:  adv_acc 37.50% 	 adv_loss 2.024e+00
+2022-04-13 22:07:09 root:INFO:  test_acc  54.53% 	 test_loss  1.267e+00
+2022-04-13 22:07:09 root:INFO:  
+2022-04-13 22:08:43 root:INFO:  step [23000/40000]:
+2022-04-13 22:08:43 root:INFO:  adv_acc 25.00% 	 adv_loss 1.211e+00
+2022-04-13 22:08:43 root:INFO:  test_acc  56.55% 	 test_loss  1.218e+00
+2022-04-13 22:08:43 root:INFO:  
+2022-04-13 22:10:17 root:INFO:  step [24000/40000]:
+2022-04-13 22:10:17 root:INFO:  adv_acc 37.50% 	 adv_loss 1.226e+00
+2022-04-13 22:10:17 root:INFO:  test_acc  56.64% 	 test_loss  1.241e+00
+2022-04-13 22:10:17 root:INFO:  
+2022-04-13 22:11:52 root:INFO:  step [25000/40000]:
+2022-04-13 22:11:52 root:INFO:  adv_acc 25.00% 	 adv_loss 1.916e+00
+2022-04-13 22:11:52 root:INFO:  test_acc  55.55% 	 test_loss  1.257e+00
+2022-04-13 22:11:52 root:INFO:  
+2022-04-13 22:13:27 root:INFO:  step [26000/40000]:
+2022-04-13 22:13:27 root:INFO:  adv_acc 50.00% 	 adv_loss 1.236e+00
+2022-04-13 22:13:27 root:INFO:  test_acc  58.66% 	 test_loss  1.137e+00
+2022-04-13 22:13:27 root:INFO:  
+2022-04-13 22:15:02 root:INFO:  step [27000/40000]:
+2022-04-13 22:15:02 root:INFO:  adv_acc 37.50% 	 adv_loss 1.616e+00
+2022-04-13 22:15:02 root:INFO:  test_acc  57.46% 	 test_loss  1.210e+00
+2022-04-13 22:15:02 root:INFO:  
+2022-04-13 22:16:37 root:INFO:  step [28000/40000]:
+2022-04-13 22:16:37 root:INFO:  adv_acc 25.00% 	 adv_loss 1.803e+00
+2022-04-13 22:16:37 root:INFO:  test_acc  59.14% 	 test_loss  1.130e+00
+2022-04-13 22:16:37 root:INFO:  
+2022-04-13 22:18:13 root:INFO:  step [29000/40000]:
+2022-04-13 22:18:13 root:INFO:  adv_acc 12.50% 	 adv_loss 1.782e+00
+2022-04-13 22:18:13 root:INFO:  test_acc  60.17% 	 test_loss  1.114e+00
+2022-04-13 22:18:13 root:INFO:  
+2022-04-13 22:19:48 root:INFO:  step [30000/40000]:
+2022-04-13 22:19:48 root:INFO:  adv_acc 50.00% 	 adv_loss 1.470e+00
+2022-04-13 22:19:48 root:INFO:  test_acc  59.94% 	 test_loss  1.113e+00
+2022-04-13 22:19:48 root:INFO:  
+2022-04-13 22:21:24 root:INFO:  step [31000/40000]:
+2022-04-13 22:21:24 root:INFO:  adv_acc 50.00% 	 adv_loss 1.416e+00
+2022-04-13 22:21:24 root:INFO:  test_acc  58.98% 	 test_loss  1.122e+00
+2022-04-13 22:21:24 root:INFO:  
+2022-04-13 22:23:00 root:INFO:  step [32000/40000]:
+2022-04-13 22:23:00 root:INFO:  adv_acc 50.00% 	 adv_loss 1.566e+00
+2022-04-13 22:23:00 root:INFO:  test_acc  60.13% 	 test_loss  1.100e+00
+2022-04-13 22:23:00 root:INFO:  
+2022-04-13 22:24:35 root:INFO:  step [33000/40000]:
+2022-04-13 22:24:35 root:INFO:  adv_acc 50.00% 	 adv_loss 1.668e+00
+2022-04-13 22:24:35 root:INFO:  test_acc  66.99% 	 test_loss  9.438e-01
+2022-04-13 22:24:35 root:INFO:  
+2022-04-13 22:26:12 root:INFO:  step [34000/40000]:
+2022-04-13 22:26:12 root:INFO:  adv_acc 75.00% 	 adv_loss 8.647e-01
+2022-04-13 22:26:12 root:INFO:  test_acc  67.64% 	 test_loss  9.256e-01
+2022-04-13 22:26:12 root:INFO:  
+2022-04-13 22:27:47 root:INFO:  step [35000/40000]:
+2022-04-13 22:27:47 root:INFO:  adv_acc 50.00% 	 adv_loss 1.554e+00
+2022-04-13 22:27:47 root:INFO:  test_acc  68.62% 	 test_loss  9.131e-01
+2022-04-13 22:27:47 root:INFO:  
+2022-04-13 22:29:22 root:INFO:  step [36000/40000]:
+2022-04-13 22:29:22 root:INFO:  adv_acc 50.00% 	 adv_loss 1.623e+00
+2022-04-13 22:29:22 root:INFO:  test_acc  68.57% 	 test_loss  8.944e-01
+2022-04-13 22:29:22 root:INFO:  
+2022-04-13 22:30:57 root:INFO:  step [37000/40000]:
+2022-04-13 22:30:57 root:INFO:  adv_acc 75.00% 	 adv_loss 8.210e-01
+2022-04-13 22:30:57 root:INFO:  test_acc  68.79% 	 test_loss  9.051e-01
+2022-04-13 22:30:57 root:INFO:  
+2022-04-13 22:32:33 root:INFO:  step [38000/40000]:
+2022-04-13 22:32:33 root:INFO:  adv_acc 37.50% 	 adv_loss 1.088e+00
+2022-04-13 22:32:33 root:INFO:  test_acc  68.71% 	 test_loss  8.889e-01
+2022-04-13 22:32:33 root:INFO:  
+2022-04-13 22:34:07 root:INFO:  step [39000/40000]:
+2022-04-13 22:34:07 root:INFO:  adv_acc 37.50% 	 adv_loss 1.224e+00
+2022-04-13 22:34:07 root:INFO:  test_acc  69.73% 	 test_loss  8.709e-01
+2022-04-13 22:34:07 root:INFO:  
+2022-04-13 22:35:43 root:INFO:  step [40000/40000]:
+2022-04-13 22:35:43 root:INFO:  adv_acc 50.00% 	 adv_loss 1.560e+00
+2022-04-13 22:35:43 root:INFO:  test_acc  69.56% 	 test_loss  8.693e-01
+2022-04-13 22:35:43 root:INFO:  
