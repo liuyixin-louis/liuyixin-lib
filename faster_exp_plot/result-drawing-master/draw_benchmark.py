@@ -214,8 +214,8 @@ def draw_single_env(all_csv_file_list, ax, task_config, env_config, max_step,end
     ax.grid(alpha=0.3)  # add grid lines
     
     # legend
-    if end:
-        ax.legend(loc="lower right")
+    # if end:
+    #     ax.legend(loc="lower right")
 
 
 def get_all_csv_filename(path):
@@ -301,7 +301,7 @@ if __name__ == '__main__':
     # 
     task_config = {
         'subplot': (3, 3),
-        'root_path': '/ssd2/liuyixin04/workspace/test-yixin/faster_exp_plot/plot_dir',
+        'root_path': '/Users/apple/Desktop/workspace/intern/baidu/personal-code/test-yixin/faster_exp_plot/plot_dir',
         'algorithms': ['MADDPG-continous','MADDPG-discrete'],
         'envs': [
                 'simple', 'simple_adversary', 'simple_crypto', 'simple_push',
