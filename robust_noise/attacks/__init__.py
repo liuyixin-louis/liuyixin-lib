@@ -1,4 +1,4 @@
 from .pgd_attacker import PGDAttacker
-from .robust_workers import RobustPGDAttacker, RobustMinimaxPGDDefender,RobustMiniNonMaxPGDDefender
+from .robust_workers import *
 
 from .diff_aug_pgd import DiffAugPGDAttacker
