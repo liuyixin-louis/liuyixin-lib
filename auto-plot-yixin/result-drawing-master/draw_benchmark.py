@@ -274,6 +274,13 @@ def main(task_config, general_config):
 
 
 if __name__ == '__main__':
+
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--path',type=str,default='/ssd2/liuyixin04/workspace/PARL/examples/MADDPG/plot_dir')
+    parser.add_argument('--output',type=str,default='./result.png')
+    args = parser.parse_args()
+
     start_time = time.time()
     plt.rcParams['figure.dpi'] = 300
     plt.rcParams["font.family"] = "Times New Roman"
@@ -298,10 +305,10 @@ if __name__ == '__main__':
     #     'output_name': 'result.pdf'
     # }
 
-    # 
+    # args.output
     task_config = {
         'subplot': (3, 3),
-        'root_path': '/ssd2/liuyixin04/workspace/PARL/examples/MADDPG/plot_dir',
+        'root_path': args.path,
         'algorithms': ['MADDPG-continous','MADDPG-discrete'],
         'envs': [
                 'simple', 'simple_adversary', 'simple_crypto', 'simple_push',
@@ -312,7 +319,7 @@ if __name__ == '__main__':
         'reference_window_size': 2,
         'window_size_increase_rate': 1,
         'env_steps': [25000]*5+[100000]*3,
-        'output_name': 'result.png'
+        'output_name': args.output
     }
     main(task_config, general_config)
     print('finished! total time: {} s'.format(time.time() - start_time))

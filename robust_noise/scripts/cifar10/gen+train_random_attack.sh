@@ -1,8 +1,9 @@
-root=/ssd2/liuyixin04/workspace/test-yixin/robust_noise
+root=/ssd2/liuyixin04/workspace/my-repo-yixin/robust_noise
 cd $root
 lib="/opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib"
 pyt="/ssd2/liuyixin04/miniconda3/envs/py37_torch/bin/python"
 noise_train_step=10000
+expname="double-uniform-random-attack"
 
 $lib $pyt generate_robust_em_random_pertub.py \
     --arch resnet18 \
@@ -27,7 +28,7 @@ $lib $pyt generate_robust_em_random_pertub.py \
     --report-freq 1000 \
     --save-freq 1000 \
     --data-dir ~/dataset/ \
-    --save-dir ./exp_data/cifar10/random-pertub-noise-$noise_train_step/rem8-4 \
+    --save-dir ./exp_data/cifar10/$expname-random-pertub-noise-$noise_train_step/rem8-4 \
     --save-name random_attack
 
 $lib $pyt train.py \
@@ -47,7 +48,7 @@ $lib $pyt train.py \
     --pgd-random-start \
     --report-freq 1000 \
     --save-freq 100000 \
-    --noise-path ./exp_data/cifar10/random-pertub-noise-$noise_train_step/rem8-4/random_attack-fin-def-noise.pkl \
+    --noise-path ./exp_data/cifar10/$expname-random-pertub-noise-$noise_train_step/rem8-4/random_attack-fin-def-noise.pkl \
     --data-dir ~/dataset/ \
-    --save-dir ./exp_data/cifar10/random-pertub/rem8-4/r4 \
+    --save-dir ./exp_data/cifar10/$expname-random-pertub/rem8-4/r4 \
     --save-name random_attack_train
