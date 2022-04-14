@@ -1,8 +1,13 @@
-cd $1
-python generate_robust_em.py \
+root=/ssd2/liuyixin04/workspace/test-yixin/robust_noise
+cd $root
+lib="/opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib"
+pyt="/ssd2/liuyixin04/miniconda3/envs/py37_torch/bin/python"
+noise_train_step=10000
+
+$lib $pyt generate_robust_em.py \
     --arch resnet18 \
     --dataset cifar10 \
-    --train-steps 5000 \
+    --train-steps $noise_train_step \
     --batch-size 8 \
     --optim sgd \
     --lr 0.1 \
@@ -21,12 +26,12 @@ python generate_robust_em.py \
     --samp-num 5 \
     --report-freq 1000 \
     --save-freq 1000 \
-    --data-dir ./data \
-    --save-dir ./exp_data/cifar10/baseline-noise/rem8-4 \
+    --data-dir ~/dataset/ \
+    --save-dir ./exp_data/cifar10/baseline-noise-$noise_train_step/rem8-4 \
     --save-name rembaseline
 
 
-python train.py \
+$lib $pyt train.py \
     --arch resnet18 \
     --dataset cifar10 \
     --train-steps 40000 \
@@ -43,7 +48,7 @@ python train.py \
     --pgd-random-start \
     --report-freq 1000 \
     --save-freq 100000 \
-    --noise-path ./exp_data/cifar10/baseline-noise/rem8-4/rembaseline-fin-def-noise.pkl \
-    --data-dir ./data \
+    --noise-path ./exp_data/cifar10/baseline-noise-$noise_train_step/rem8-4/rembaseline-fin-def-noise.pkl \
+    --data-dir ~/dataset/ \
     --save-dir ./exp_data/cifar10/rembaseline-baseline-noise/rem8-4/r4 \
     --save-name rem_baseline_train

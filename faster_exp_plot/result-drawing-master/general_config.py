@@ -120,6 +120,7 @@ GeneralConfig['simple_spread'] = copy.deepcopy(GeneralConfig['simple'])
 GeneralConfig['simple_spread']['max_y'] = -90
 GeneralConfig['simple_spread']['min_y'] = -130
 GeneralConfig['simple_spread']['y_major_loc'] = 5
+GeneralConfig['simple_spread']['x_major_loc'] = 20000
 
 
 GeneralConfig['simple_tag'] = copy.deepcopy(GeneralConfig['simple'])

@@ -301,7 +301,7 @@ if __name__ == '__main__':
     # 
     task_config = {
         'subplot': (3, 3),
-        'root_path': '/Users/apple/Desktop/workspace/intern/baidu/personal-code/test-yixin/faster_exp_plot/plot_dir',
+        'root_path': '/ssd2/liuyixin04/workspace/PARL/examples/MADDPG/plot_dir',
         'algorithms': ['MADDPG-continous','MADDPG-discrete'],
         'envs': [
                 'simple', 'simple_adversary', 'simple_crypto', 'simple_push',
@@ -311,7 +311,7 @@ if __name__ == '__main__':
         'line_labels': ['continous','discrete'],
         'reference_window_size': 2,
         'window_size_increase_rate': 1,
-        'env_steps': [25000]*6+[100000]*2,
+        'env_steps': [25000]*5+[100000]*3,
         'output_name': 'result.png'
     }
     main(task_config, general_config)
