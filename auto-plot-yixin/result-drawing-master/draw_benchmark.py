@@ -114,9 +114,9 @@ def calc_mean_and_confidence(csv_file_list,
     values_all = []
 
     first_df = get_single_csv_data(csv_file_list[0])
-    print(first_df)
+    # print(first_df)
     first_steps = first_df['Step'].values
-    print(first_steps)
+    # print(first_steps)
     point_interval = first_steps[-1] // first_steps.shape[0]
 
     for csv_file_name in csv_file_list:
@@ -125,8 +125,8 @@ def calc_mean_and_confidence(csv_file_list,
         steps_all.append(steps)
         values_all.append(values)
         print('len steps : {}, values {}'.format(len(steps), len(values)))
-    print(steps,values)
-    print('debug')
+    # print(steps,values)
+    # print('debug')
     # make sure that all csv files has the same steps
     selected_steps = []
     selected_values = [[] for _ in range(len(steps_all))]
@@ -214,8 +214,8 @@ def draw_single_env(all_csv_file_list, ax, task_config, env_config, max_step,end
     ax.grid(alpha=0.3)  # add grid lines
     
     # legend
-    # if end:
-    #     ax.legend(loc="lower right")
+    if end:
+        ax.legend(loc="lower right")
 
 
 def get_all_csv_filename(path):

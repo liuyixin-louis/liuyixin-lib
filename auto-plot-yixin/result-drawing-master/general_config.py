@@ -117,8 +117,8 @@ GeneralConfig['simple_speaker_listener']['min_y'] = -100
 GeneralConfig['simple_speaker_listener']['y_major_loc'] = 50
 
 GeneralConfig['simple_spread'] = copy.deepcopy(GeneralConfig['simple'])
-GeneralConfig['simple_spread']['max_y'] = -90
-GeneralConfig['simple_spread']['min_y'] = -130
+GeneralConfig['simple_spread']['max_y'] = -48
+GeneralConfig['simple_spread']['min_y'] = -188
 GeneralConfig['simple_spread']['y_major_loc'] = 5
 GeneralConfig['simple_spread']['x_major_loc'] = 20000
 
@@ -152,10 +152,10 @@ config_from_statis = {'simple_adversary': {'max_y': 0,
   'min_y': -60,
   'mean_endy': 25.607500076293945,
   'y_major_loc': 30},
- 'simple_spread': {'max_y': -90,
-  'min_y': -130,
+ 'simple_spread': {'max_y': -40,
+  'min_y': -200,
   'mean_endy': -102.2490005493164,
-  'y_major_loc': 10},
+  'y_major_loc': 40},
  'simple_speaker_listener': {'max_y': 0,
   'min_y': -100,
   'mean_endy': -24.63675022125244,
