@@ -214,8 +214,8 @@ def draw_single_env(all_csv_file_list, ax, task_config, env_config, max_step,end
     ax.grid(alpha=0.3)  # add grid lines
     
     # legend
-    if end:
-        ax.legend(loc="lower right")
+    # if end:
+    #     ax.legend(loc="lower right")
 
 
 def get_all_csv_filename(path):
