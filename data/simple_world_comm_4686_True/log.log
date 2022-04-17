@@ -1,0 +1,141 @@
+[32m[04-16 22:48:45 MainThread @train.py:87][0m agent num: 6
+[32m[04-16 22:48:45 MainThread @train.py:88][0m obs_shape_n: [34, 34, 34, 34, 28, 28]
+[32m[04-16 22:48:45 MainThread @train.py:89][0m act_shape_n: [9, 5, 5, 5, 5, 5]
+[32m[04-16 22:48:45 MainThread @train.py:90][0m observation_space: [Box(-inf, inf, (34,), float32), Box(-inf, inf, (34,), float32), Box(-inf, inf, (34,), float32), Box(-inf, inf, (34,), float32), Box(-inf, inf, (28,), float32), Box(-inf, inf, (28,), float32)]
+[32m[04-16 22:48:45 MainThread @train.py:91][0m action_space: [Box(0.0, 1.0, (9,), float32), Box(0.0, 1.0, (5,), float32), Box(0.0, 1.0, (5,), float32), Box(0.0, 1.0, (5,), float32), Box(0.0, 1.0, (5,), float32), Box(0.0, 1.0, (5,), float32)]
+[32m[04-16 22:48:45 MainThread @train.py:95][0m agent 0 obs_low:[-inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf] obs_high:[inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf
+ inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf]
+[32m[04-16 22:48:45 MainThread @train.py:96][0m agent 0 act_n:9
+[32m[04-16 22:48:45 MainThread @train.py:100][0m agent 0 act_low:[0. 0. 0. 0. 0. 0. 0. 0. 0.] act_high:[1. 1. 1. 1. 1. 1. 1. 1. 1.] act_shape:(9,)
+[32m[04-16 22:48:45 MainThread @train.py:95][0m agent 1 obs_low:[-inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf] obs_high:[inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf
+ inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf]
+[32m[04-16 22:48:45 MainThread @train.py:96][0m agent 1 act_n:5
+[32m[04-16 22:48:45 MainThread @train.py:100][0m agent 1 act_low:[0. 0. 0. 0. 0.] act_high:[1. 1. 1. 1. 1.] act_shape:(5,)
+[32m[04-16 22:48:45 MainThread @train.py:95][0m agent 2 obs_low:[-inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf] obs_high:[inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf
+ inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf]
+[32m[04-16 22:48:45 MainThread @train.py:96][0m agent 2 act_n:5
+[32m[04-16 22:48:45 MainThread @train.py:100][0m agent 2 act_low:[0. 0. 0. 0. 0.] act_high:[1. 1. 1. 1. 1.] act_shape:(5,)
+[32m[04-16 22:48:45 MainThread @train.py:95][0m agent 3 obs_low:[-inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf] obs_high:[inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf
+ inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf]
+[32m[04-16 22:48:45 MainThread @train.py:96][0m agent 3 act_n:5
+[32m[04-16 22:48:45 MainThread @train.py:100][0m agent 3 act_low:[0. 0. 0. 0. 0.] act_high:[1. 1. 1. 1. 1.] act_shape:(5,)
+[32m[04-16 22:48:45 MainThread @train.py:95][0m agent 4 obs_low:[-inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf] obs_high:[inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf
+ inf inf inf inf inf inf inf inf inf inf]
+[32m[04-16 22:48:45 MainThread @train.py:96][0m agent 4 act_n:5
+[32m[04-16 22:48:45 MainThread @train.py:100][0m agent 4 act_low:[0. 0. 0. 0. 0.] act_high:[1. 1. 1. 1. 1.] act_shape:(5,)
+[32m[04-16 22:48:45 MainThread @train.py:95][0m agent 5 obs_low:[-inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf
+ -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf -inf] obs_high:[inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf
+ inf inf inf inf inf inf inf inf inf inf]
+[32m[04-16 22:48:45 MainThread @train.py:96][0m agent 5 act_n:5
+[32m[04-16 22:48:45 MainThread @train.py:100][0m agent 5 act_low:[0. 0. 0. 0. 0.] act_high:[1. 1. 1. 1. 1.] act_shape:(5,)
+[32m[04-16 22:48:45 MainThread @train.py:103][0m critic_in_dim: 226
+[32m[04-16 22:48:50 MainThread @train.py:142][0m Starting...
+[32m[04-16 22:53:13 MainThread @train.py:170][0m Steps: 25000, Episodes: 1000, Mean episode reward: -50.685, mean agents rewards [1.43, 1.56, 1.35, 1.52, -35.44, -21.1], Time: 262.915
+[32m[04-16 22:57:56 MainThread @train.py:170][0m Steps: 50000, Episodes: 2000, Mean episode reward: -39.489, mean agents rewards [3.96, 3.88, 4.15, 3.78, -36.61, -18.65], Time: 283.179
+[32m[04-16 23:02:39 MainThread @train.py:170][0m Steps: 75000, Episodes: 3000, Mean episode reward: 17.443, mean agents rewards [6.71, 6.65, 6.56, 6.79, -4.22, -5.05], Time: 283.014
+[32m[04-16 23:07:23 MainThread @train.py:170][0m Steps: 100000, Episodes: 4000, Mean episode reward: 24.103, mean agents rewards [9.28, 8.88, 8.55, 9.13, -5.01, -6.73], Time: 283.69
+[32m[04-16 23:12:06 MainThread @train.py:170][0m Steps: 125000, Episodes: 5000, Mean episode reward: 30.003, mean agents rewards [10.94, 10.48, 10.47, 11.03, -6.27, -6.64], Time: 283.083
+[32m[04-16 23:16:49 MainThread @train.py:170][0m Steps: 150000, Episodes: 6000, Mean episode reward: 41.627, mean agents rewards [14.97, 14.08, 14.49, 15.07, -8.41, -8.56], Time: 282.847
+[32m[04-16 23:21:32 MainThread @train.py:170][0m Steps: 175000, Episodes: 7000, Mean episode reward: 47.778, mean agents rewards [16.82, 16.42, 16.35, 16.99, -9.35, -9.45], Time: 282.946
+[32m[04-16 23:26:15 MainThread @train.py:170][0m Steps: 200000, Episodes: 8000, Mean episode reward: 62.918, mean agents rewards [21.83, 21.85, 21.36, 21.81, -11.37, -12.56], Time: 282.955
+[32m[04-16 23:30:58 MainThread @train.py:170][0m Steps: 225000, Episodes: 9000, Mean episode reward: 41.176, mean agents rewards [15.71, 15.84, 15.35, 15.67, -10.81, -10.58], Time: 282.963
+[32m[04-16 23:35:41 MainThread @train.py:170][0m Steps: 250000, Episodes: 10000, Mean episode reward: 35.163, mean agents rewards [13.73, 13.96, 13.56, 13.84, -9.81, -10.12], Time: 283.279
+[32m[04-16 23:40:24 MainThread @train.py:170][0m Steps: 275000, Episodes: 11000, Mean episode reward: 20.68, mean agents rewards [9.08, 9.29, 9.16, 9.18, -8.99, -7.04], Time: 283.175
+[32m[04-16 23:45:07 MainThread @train.py:170][0m Steps: 300000, Episodes: 12000, Mean episode reward: 20.297, mean agents rewards [8.36, 8.44, 8.33, 8.38, -7.32, -5.9], Time: 283.02
+[32m[04-16 23:49:50 MainThread @train.py:170][0m Steps: 325000, Episodes: 13000, Mean episode reward: 21.425, mean agents rewards [8.86, 8.75, 8.65, 8.7, -7.42, -6.1], Time: 283.3
+[32m[04-16 23:54:34 MainThread @train.py:170][0m Steps: 350000, Episodes: 14000, Mean episode reward: 18.163, mean agents rewards [8.39, 8.25, 8.22, 8.22, -8.71, -6.21], Time: 283.356
+[32m[04-16 23:59:17 MainThread @train.py:170][0m Steps: 375000, Episodes: 15000, Mean episode reward: 19.144, mean agents rewards [8.41, 8.31, 8.24, 8.31, -7.58, -6.54], Time: 283.346
+[32m[04-17 00:04:01 MainThread @train.py:170][0m Steps: 400000, Episodes: 16000, Mean episode reward: 18.354, mean agents rewards [8.19, 8.1, 8.1, 7.94, -8.05, -5.93], Time: 283.436
+[32m[04-17 00:08:44 MainThread @train.py:170][0m Steps: 425000, Episodes: 17000, Mean episode reward: 18.019, mean agents rewards [8.82, 8.62, 8.74, 8.51, -6.84, -9.83], Time: 283.003
+[32m[04-17 00:13:27 MainThread @train.py:170][0m Steps: 450000, Episodes: 18000, Mean episode reward: 24.658, mean agents rewards [9.83, 9.69, 9.73, 9.57, -6.32, -7.85], Time: 283.14
+[32m[04-17 00:18:10 MainThread @train.py:170][0m Steps: 475000, Episodes: 19000, Mean episode reward: 24.904, mean agents rewards [10.0, 9.89, 9.92, 9.75, -6.36, -8.29], Time: 282.976
+[32m[04-17 00:22:53 MainThread @train.py:170][0m Steps: 500000, Episodes: 20000, Mean episode reward: 26.95, mean agents rewards [10.63, 10.47, 10.58, 10.36, -6.74, -8.35], Time: 283.434
+[32m[04-17 00:27:36 MainThread @train.py:170][0m Steps: 525000, Episodes: 21000, Mean episode reward: 27.568, mean agents rewards [10.72, 10.49, 10.59, 10.39, -5.92, -8.71], Time: 283.277
+[32m[04-17 00:32:20 MainThread @train.py:170][0m Steps: 550000, Episodes: 22000, Mean episode reward: 40.14, mean agents rewards [14.84, 14.5, 14.68, 14.41, -6.05, -12.25], Time: 283.15
+[32m[04-17 00:37:03 MainThread @train.py:170][0m Steps: 575000, Episodes: 23000, Mean episode reward: 31.648, mean agents rewards [12.71, 12.45, 12.51, 12.28, -6.24, -12.06], Time: 283.31
+[32m[04-17 00:41:47 MainThread @train.py:170][0m Steps: 600000, Episodes: 24000, Mean episode reward: 30.476, mean agents rewards [12.39, 12.15, 12.12, 12.01, -5.83, -12.37], Time: 283.757
+[32m[04-17 00:46:30 MainThread @train.py:170][0m Steps: 625000, Episodes: 25000, Mean episode reward: 27.745, mean agents rewards [11.8, 11.5, 11.4, 11.47, -6.95, -11.47], Time: 283.418
+[32m[04-17 00:51:13 MainThread @train.py:170][0m Steps: 650000, Episodes: 26000, Mean episode reward: 30.455, mean agents rewards [12.12, 11.9, 11.72, 11.82, -6.76, -10.34], Time: 282.968
+[32m[04-17 00:55:56 MainThread @train.py:170][0m Steps: 675000, Episodes: 27000, Mean episode reward: 32.518, mean agents rewards [12.88, 12.57, 12.5, 12.59, -7.39, -10.61], Time: 282.947
+[32m[04-17 01:00:39 MainThread @train.py:170][0m Steps: 700000, Episodes: 28000, Mean episode reward: 33.539, mean agents rewards [13.13, 12.77, 12.67, 12.8, -7.03, -10.8], Time: 283.414
+[32m[04-17 01:05:23 MainThread @train.py:170][0m Steps: 725000, Episodes: 29000, Mean episode reward: 35.305, mean agents rewards [13.43, 13.06, 13.1, 13.08, -5.9, -11.46], Time: 283.297
+[32m[04-17 01:10:06 MainThread @train.py:170][0m Steps: 750000, Episodes: 30000, Mean episode reward: 27.922, mean agents rewards [11.48, 11.14, 11.25, 11.03, -5.98, -10.99], Time: 283.489
+[32m[04-17 01:14:49 MainThread @train.py:170][0m Steps: 775000, Episodes: 31000, Mean episode reward: 23.526, mean agents rewards [10.37, 10.06, 10.17, 9.93, -6.45, -10.56], Time: 282.992
+[32m[04-17 01:19:33 MainThread @train.py:170][0m Steps: 800000, Episodes: 32000, Mean episode reward: 21.234, mean agents rewards [9.61, 9.31, 9.38, 9.2, -6.26, -10.0], Time: 284.127
+[32m[04-17 01:24:19 MainThread @train.py:170][0m Steps: 825000, Episodes: 33000, Mean episode reward: 21.095, mean agents rewards [9.53, 9.21, 9.09, 8.94, -6.41, -9.27], Time: 285.884
+[32m[04-17 01:29:04 MainThread @train.py:170][0m Steps: 850000, Episodes: 34000, Mean episode reward: 21.794, mean agents rewards [9.79, 9.41, 9.3, 9.09, -6.52, -9.27], Time: 285.126
+[32m[04-17 01:33:49 MainThread @train.py:170][0m Steps: 875000, Episodes: 35000, Mean episode reward: 19.778, mean agents rewards [9.59, 9.23, 9.07, 8.81, -7.25, -9.67], Time: 284.716
+[32m[04-17 01:38:34 MainThread @train.py:170][0m Steps: 900000, Episodes: 36000, Mean episode reward: 20.102, mean agents rewards [9.53, 9.24, 9.08, 9.02, -6.84, -9.94], Time: 284.54
+[32m[04-17 01:43:17 MainThread @train.py:170][0m Steps: 925000, Episodes: 37000, Mean episode reward: 21.531, mean agents rewards [9.62, 9.42, 9.18, 9.24, -6.48, -9.45], Time: 283.776
+[32m[04-17 01:48:03 MainThread @train.py:170][0m Steps: 950000, Episodes: 38000, Mean episode reward: 22.036, mean agents rewards [9.62, 9.4, 9.14, 9.27, -6.06, -9.32], Time: 285.893
+[32m[04-17 01:52:46 MainThread @train.py:170][0m Steps: 975000, Episodes: 39000, Mean episode reward: 21.332, mean agents rewards [9.09, 8.87, 8.61, 8.74, -5.52, -8.45], Time: 283.247
+[32m[04-17 01:57:31 MainThread @train.py:170][0m Steps: 1000000, Episodes: 40000, Mean episode reward: 20.906, mean agents rewards [8.99, 8.7, 8.68, 8.68, -5.48, -8.66], Time: 284.912
+[32m[04-17 02:02:13 MainThread @train.py:170][0m Steps: 1025000, Episodes: 41000, Mean episode reward: 20.568, mean agents rewards [8.82, 8.66, 8.61, 8.63, -6.28, -7.87], Time: 282.006
+[32m[04-17 02:06:47 MainThread @train.py:170][0m Steps: 1050000, Episodes: 42000, Mean episode reward: 20.927, mean agents rewards [9.13, 8.93, 8.94, 8.94, -7.41, -7.59], Time: 273.372
+[32m[04-17 02:11:23 MainThread @train.py:170][0m Steps: 1075000, Episodes: 43000, Mean episode reward: 17.767, mean agents rewards [8.78, 8.6, 8.53, 8.52, -8.54, -8.12], Time: 276.534
+[32m[04-17 02:16:01 MainThread @train.py:170][0m Steps: 1100000, Episodes: 44000, Mean episode reward: 17.802, mean agents rewards [9.18, 9.01, 8.88, 8.82, -9.29, -8.8], Time: 278.085
+[32m[04-17 02:20:41 MainThread @train.py:170][0m Steps: 1125000, Episodes: 45000, Mean episode reward: 22.773, mean agents rewards [10.51, 10.25, 10.2, 10.18, -8.8, -9.58], Time: 279.738
+[32m[04-17 02:25:16 MainThread @train.py:170][0m Steps: 1150000, Episodes: 46000, Mean episode reward: 25.702, mean agents rewards [10.46, 10.3, 10.25, 10.18, -6.93, -8.55], Time: 274.593
+[32m[04-17 02:29:51 MainThread @train.py:170][0m Steps: 1175000, Episodes: 47000, Mean episode reward: 24.167, mean agents rewards [10.14, 9.98, 9.94, 9.78, -7.16, -8.51], Time: 274.807
+[32m[04-17 02:34:26 MainThread @train.py:170][0m Steps: 1200000, Episodes: 48000, Mean episode reward: 22.904, mean agents rewards [9.62, 9.48, 9.33, 9.28, -6.32, -8.48], Time: 275.75
+[32m[04-17 02:39:00 MainThread @train.py:170][0m Steps: 1225000, Episodes: 49000, Mean episode reward: 22.842, mean agents rewards [9.58, 9.38, 9.31, 9.21, -7.01, -7.64], Time: 273.738
+[32m[04-17 02:43:34 MainThread @train.py:170][0m Steps: 1250000, Episodes: 50000, Mean episode reward: 20.516, mean agents rewards [9.06, 8.79, 8.75, 8.69, -7.19, -7.59], Time: 274.002
+[32m[04-17 02:48:12 MainThread @train.py:170][0m Steps: 1275000, Episodes: 51000, Mean episode reward: 24.448, mean agents rewards [10.45, 10.3, 10.09, 10.1, -8.48, -8.01], Time: 277.927
+[32m[04-17 02:52:46 MainThread @train.py:170][0m Steps: 1300000, Episodes: 52000, Mean episode reward: 24.908, mean agents rewards [10.77, 10.66, 10.46, 10.47, -8.84, -8.62], Time: 274.413
+[32m[04-17 02:57:28 MainThread @train.py:170][0m Steps: 1325000, Episodes: 53000, Mean episode reward: 24.107, mean agents rewards [10.25, 10.08, 10.06, 10.03, -8.3, -8.01], Time: 281.445
+[32m[04-17 03:02:09 MainThread @train.py:170][0m Steps: 1350000, Episodes: 54000, Mean episode reward: 22.96, mean agents rewards [10.08, 9.97, 9.99, 9.98, -9.06, -8.0], Time: 281.524
+[32m[04-17 03:06:43 MainThread @train.py:170][0m Steps: 1375000, Episodes: 55000, Mean episode reward: 26.28, mean agents rewards [11.03, 10.96, 10.84, 10.98, -8.82, -8.72], Time: 273.811
+[32m[04-17 03:11:17 MainThread @train.py:170][0m Steps: 1400000, Episodes: 56000, Mean episode reward: 23.374, mean agents rewards [9.75, 9.82, 9.61, 9.76, -7.43, -8.14], Time: 274.207
+[32m[04-17 03:15:56 MainThread @train.py:170][0m Steps: 1425000, Episodes: 57000, Mean episode reward: 22.627, mean agents rewards [9.7, 9.69, 9.54, 9.53, -7.16, -8.67], Time: 278.388
+[32m[04-17 03:20:30 MainThread @train.py:170][0m Steps: 1450000, Episodes: 58000, Mean episode reward: 19.04, mean agents rewards [8.24, 8.34, 8.25, 8.14, -6.53, -7.4], Time: 274.067
+[32m[04-17 03:25:08 MainThread @train.py:170][0m Steps: 1475000, Episodes: 59000, Mean episode reward: 19.668, mean agents rewards [8.79, 8.54, 8.61, 8.57, -6.02, -8.83], Time: 278.271
+[32m[04-17 03:29:44 MainThread @train.py:170][0m Steps: 1500000, Episodes: 60000, Mean episode reward: 25.291, mean agents rewards [10.25, 9.92, 9.95, 9.92, -5.75, -9.0], Time: 276.245
+[32m[04-17 03:34:18 MainThread @train.py:170][0m Steps: 1525000, Episodes: 61000, Mean episode reward: 23.488, mean agents rewards [9.74, 9.47, 9.46, 9.38, -5.11, -9.44], Time: 273.757
+[32m[04-17 03:38:52 MainThread @train.py:170][0m Steps: 1550000, Episodes: 62000, Mean episode reward: 21.726, mean agents rewards [9.23, 9.17, 8.99, 8.98, -5.76, -8.88], Time: 273.9
+[32m[04-17 03:43:26 MainThread @train.py:170][0m Steps: 1575000, Episodes: 63000, Mean episode reward: 19.579, mean agents rewards [8.55, 8.5, 8.29, 8.32, -5.2, -8.88], Time: 273.956
+[32m[04-17 03:48:00 MainThread @train.py:170][0m Steps: 1600000, Episodes: 64000, Mean episode reward: 20.044, mean agents rewards [8.7, 8.6, 8.36, 8.31, -5.3, -8.63], Time: 274.135
+[32m[04-17 03:52:35 MainThread @train.py:170][0m Steps: 1625000, Episodes: 65000, Mean episode reward: 18.467, mean agents rewards [8.45, 8.27, 8.08, 8.13, -5.89, -8.57], Time: 274.535
+[32m[04-17 03:57:15 MainThread @train.py:170][0m Steps: 1650000, Episodes: 66000, Mean episode reward: 18.031, mean agents rewards [8.69, 8.53, 8.42, 8.26, -7.57, -8.29], Time: 280.087
+[32m[04-17 04:01:51 MainThread @train.py:170][0m Steps: 1675000, Episodes: 67000, Mean episode reward: 17.032, mean agents rewards [8.08, 8.01, 7.96, 7.76, -6.66, -8.11], Time: 276.164
+[32m[04-17 04:06:25 MainThread @train.py:170][0m Steps: 1700000, Episodes: 68000, Mean episode reward: 18.608, mean agents rewards [8.41, 8.34, 8.34, 8.02, -5.34, -9.15], Time: 273.772
+[32m[04-17 04:11:04 MainThread @train.py:170][0m Steps: 1725000, Episodes: 69000, Mean episode reward: 18.148, mean agents rewards [8.09, 7.91, 7.99, 7.59, -4.69, -8.75], Time: 279.466
+[32m[04-17 04:15:38 MainThread @train.py:170][0m Steps: 1750000, Episodes: 70000, Mean episode reward: 15.587, mean agents rewards [7.43, 7.23, 7.25, 6.82, -4.71, -8.43], Time: 274.316
+[32m[04-17 04:20:13 MainThread @train.py:170][0m Steps: 1775000, Episodes: 71000, Mean episode reward: 15.177, mean agents rewards [7.28, 7.14, 7.07, 6.78, -4.91, -8.19], Time: 274.897
+[32m[04-17 04:24:57 MainThread @train.py:170][0m Steps: 1800000, Episodes: 72000, Mean episode reward: 17.691, mean agents rewards [8.08, 7.86, 7.91, 7.64, -5.15, -8.65], Time: 283.396
+[32m[04-17 04:29:31 MainThread @train.py:170][0m Steps: 1825000, Episodes: 73000, Mean episode reward: 18.838, mean agents rewards [8.61, 8.51, 8.47, 8.26, -5.31, -9.7], Time: 274.688
+[32m[04-17 04:34:05 MainThread @train.py:170][0m Steps: 1850000, Episodes: 74000, Mean episode reward: 19.816, mean agents rewards [8.88, 8.71, 8.71, 8.52, -5.29, -9.72], Time: 273.803
+[32m[04-17 04:38:43 MainThread @train.py:170][0m Steps: 1875000, Episodes: 75000, Mean episode reward: 23.843, mean agents rewards [10.23, 10.02, 10.01, 9.8, -5.7, -10.52], Time: 277.685
+[32m[04-17 04:43:18 MainThread @train.py:170][0m Steps: 1900000, Episodes: 76000, Mean episode reward: 21.976, mean agents rewards [9.79, 9.46, 9.36, 9.36, -5.97, -10.02], Time: 274.695
+[32m[04-17 04:47:52 MainThread @train.py:170][0m Steps: 1925000, Episodes: 77000, Mean episode reward: 20.504, mean agents rewards [9.34, 9.0, 8.91, 8.93, -5.52, -10.15], Time: 274.031
+[32m[04-17 04:52:36 MainThread @train.py:170][0m Steps: 1950000, Episodes: 78000, Mean episode reward: 20.669, mean agents rewards [9.34, 8.98, 8.91, 8.97, -5.58, -9.94], Time: 284.194
+[32m[04-17 04:57:13 MainThread @train.py:170][0m Steps: 1975000, Episodes: 79000, Mean episode reward: 19.929, mean agents rewards [9.0, 8.73, 8.6, 8.62, -5.75, -9.28], Time: 277.28
+[32m[04-17 05:01:47 MainThread @train.py:170][0m Steps: 2000000, Episodes: 80000, Mean episode reward: 23.231, mean agents rewards [10.19, 9.88, 9.78, 9.75, -5.61, -10.76], Time: 274.301
+[32m[04-17 05:06:30 MainThread @train.py:170][0m Steps: 2025000, Episodes: 81000, Mean episode reward: 24.889, mean agents rewards [10.21, 9.95, 9.91, 9.77, -4.99, -9.96], Time: 282.708
+[32m[04-17 05:11:04 MainThread @train.py:170][0m Steps: 2050000, Episodes: 82000, Mean episode reward: 27.278, mean agents rewards [11.06, 10.81, 10.76, 10.6, -5.01, -10.95], Time: 274.335
+[32m[04-17 05:15:39 MainThread @train.py:170][0m Steps: 2075000, Episodes: 83000, Mean episode reward: 26.342, mean agents rewards [10.63, 10.33, 10.38, 10.22, -4.82, -10.39], Time: 274.264
+[32m[04-17 05:20:13 MainThread @train.py:170][0m Steps: 2100000, Episodes: 84000, Mean episode reward: 28.481, mean agents rewards [11.51, 11.26, 11.29, 11.09, -5.02, -11.65], Time: 274.004
+[32m[04-17 05:24:54 MainThread @train.py:170][0m Steps: 2125000, Episodes: 85000, Mean episode reward: 25.488, mean agents rewards [10.72, 10.46, 10.51, 10.3, -4.53, -11.98], Time: 280.839
+[32m[04-17 05:29:36 MainThread @train.py:170][0m Steps: 2150000, Episodes: 86000, Mean episode reward: 24.591, mean agents rewards [10.77, 10.43, 10.48, 10.29, -4.16, -13.23], Time: 282.525
+[32m[04-17 05:34:16 MainThread @train.py:170][0m Steps: 2175000, Episodes: 87000, Mean episode reward: 24.661, mean agents rewards [10.94, 10.64, 10.51, 10.47, -4.69, -13.21], Time: 279.881
+[32m[04-17 05:39:00 MainThread @train.py:170][0m Steps: 2200000, Episodes: 88000, Mean episode reward: 27.461, mean agents rewards [11.84, 11.4, 11.35, 11.34, -5.35, -13.11], Time: 283.86
+[32m[04-17 05:43:41 MainThread @train.py:170][0m Steps: 2225000, Episodes: 89000, Mean episode reward: 25.451, mean agents rewards [10.59, 10.15, 10.25, 10.16, -3.88, -11.82], Time: 280.894
+[32m[04-17 05:48:18 MainThread @train.py:170][0m Steps: 2250000, Episodes: 90000, Mean episode reward: 28.636, mean agents rewards [11.58, 11.08, 11.24, 11.09, -3.53, -12.83], Time: 277.599
+[32m[04-17 05:52:58 MainThread @train.py:170][0m Steps: 2275000, Episodes: 91000, Mean episode reward: 33.366, mean agents rewards [13.27, 12.86, 12.82, 12.72, -3.48, -14.82], Time: 279.993
+[32m[04-17 05:57:34 MainThread @train.py:170][0m Steps: 2300000, Episodes: 92000, Mean episode reward: 30.795, mean agents rewards [13.01, 12.57, 12.37, 12.35, -3.59, -15.92], Time: 276.136
+[32m[04-17 06:02:15 MainThread @train.py:170][0m Steps: 2325000, Episodes: 93000, Mean episode reward: 29.759, mean agents rewards [12.4, 12.03, 11.56, 11.85, -3.07, -15.01], Time: 280.967
+[32m[04-17 06:06:58 MainThread @train.py:170][0m Steps: 2350000, Episodes: 94000, Mean episode reward: 33.674, mean agents rewards [13.74, 13.4, 13.08, 13.21, -4.32, -15.44], Time: 282.326
+[32m[04-17 06:11:54 MainThread @train.py:170][0m Steps: 2375000, Episodes: 95000, Mean episode reward: 32.254, mean agents rewards [13.43, 13.1, 12.73, 12.97, -4.19, -15.78], Time: 295.92
+[32m[04-17 06:16:28 MainThread @train.py:170][0m Steps: 2400000, Episodes: 96000, Mean episode reward: 28.338, mean agents rewards [12.77, 12.45, 12.14, 12.35, -4.75, -16.62], Time: 274.369
+[32m[04-17 06:21:04 MainThread @train.py:170][0m Steps: 2425000, Episodes: 97000, Mean episode reward: 26.319, mean agents rewards [11.67, 11.4, 11.23, 11.3, -4.73, -14.55], Time: 276.397
+[32m[04-17 06:25:41 MainThread @train.py:170][0m Steps: 2450000, Episodes: 98000, Mean episode reward: 25.722, mean agents rewards [11.14, 10.88, 10.67, 10.83, -4.19, -13.61], Time: 276.54
+[32m[04-17 06:30:15 MainThread @train.py:170][0m Steps: 2475000, Episodes: 99000, Mean episode reward: 30.928, mean agents rewards [12.51, 12.27, 12.04, 12.18, -3.75, -14.31], Time: 273.667
+[32m[04-17 06:34:51 MainThread @train.py:170][0m Steps: 2500000, Episodes: 100000, Mean episode reward: 32.377, mean agents rewards [12.93, 12.78, 12.56, 12.64, -3.21, -15.31], Time: 276.49
