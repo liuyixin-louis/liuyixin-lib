@@ -1,0 +1,71 @@
+# "template" and "resource" are required.
+---
+# Command templates.
+# {param} is replaced by value: {param} -> value
+# [param] is replaced by value and flag: {param} -> --param value
+# if the value has boolean value, use [param].
+#     param=True -> "--param"
+#     param=False -> ""
+
+# only "snake-param" or "snake_param" are valid.
+# {param}: matched by r"{[\w\-\_]+?}"
+# [param]: matched by r"\[[\w\-\_]+?\]"
+
+# param not specified with {param}, [param] or alias, but appearing in param choice will only
+# affect {_name} and {_output}. This is used to avoid overriding existing results.
+
+# reserved params:
+# {_name}: name of param choices
+# {_output}: /output_dir/{_name}
+# {_time}: current date&time
+
+# Command templates with params to be filled
+template:
+  dtype: >
+    echo command {param1} [param2] "{'param3': {param3}}" [param4]
+  reserved: >
+    echo command {_time} {_name} {_output}
+  dummy: >
+    echo command {param1} {param2}
+  alias: >
+    echo command {param1} {param2}
+
+# Fill in values to a group of params specified in the command.
+# Useful when a setting involves various params to tweak.
+# Alias params should not be specified in command.
+alias:
+  alias:
+    case1: { param1: 1, param2: "1" }
+    case2: { param1: 2, param2: "2" }
+
+default:
+  param1: 1
+  param2: "adsf"
+  param3: 1.3
+  param4: False
+
+
+# GPU indices to be filled in CUDA_VISIBLE_DEVICES={}, each corresponds to a worker.
+# For multi-gpu tasks, simply set [ "1,2", "3,4" ]. the same resource can be assigned multiple times,
+# typically when your task requires a very low gpu utilization, e.g. [ "1", "2", "3", "1", "2", "3" ].
+resource: [ "1" , "2" ]
+
+# List all possible parameter choices here, `run` will sweep all possible combinations.
+---
+_title: dtype # -t <title> will run choices with _title==<title>
+_cmd: [ dtype, reserved ] # which command in the template to run. "run --command blah" will override it.
+param1: [ 10 ]
+param2: [ "{'a': 'b'} " ] # place quote to protect white spaces
+param3: [ 3.1415 ]
+param4: [ True ] # will be converted into flag "--param4"
+
+---
+_title: dummy
+_cmd: [ dummy ]
+dummy: [ 1 ] # only affects the directory name
+
+
+---
+_title: alias
+_cmd: [ alias ]
+alias: [ case2 ] # assign the group of case2: { param1=2, param2="2" }
