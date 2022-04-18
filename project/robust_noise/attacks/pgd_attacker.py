@@ -9,19 +9,19 @@ class PGDAttacker():
         self.random_start = random_start
         self.norm_type = norm_type
         self.ascending = ascending
-
-    def random_strat_perturb(self, model, criterion, x, y):
-        if self.steps==0 or self.radius==0:
-            return x.clone()
-
-        adv_x = x.clone()
-        if self.random_start:
-            if self.norm_type == 'l-infty':
-                adv_x += 2 * (torch.rand_like(x) - 0.5) * self.radius
-            else:
-                adv_x += 2 * (torch.rand_like(x) - 0.5) * self.radius / self.steps
-            self._clip_(adv_x, x)
-        return adv_x.data
+    #
+    # def random_strat_perturb(self, model, criterion, x, y):
+    #     if self.steps==0 or self.radius==0:
+    #         return x.clone()
+    #
+    #     adv_x = x.clone()
+    #     if self.random_start:
+    #         if self.norm_type == 'l-infty':
+    #             adv_x += 2 * (torch.rand_like(x) - 0.5) * self.radius
+    #         else:
+    #             adv_x += 2 * (torch.rand_like(x) - 0.5) * self.radius / self.steps
+    #         self._clip_(adv_x, x)
+    #     return adv_x.data
 
     def perturb(self, model, criterion, x, y):
         if self.steps==0 or self.radius==0:
@@ -66,6 +66,36 @@ class PGDAttacker():
         for pp in model.parameters():
             pp.requires_grad = True
 
+        return adv_x.data
+
+    def _clip_(self, adv_x, x):
+        adv_x -= x
+        if self.norm_type == 'l-infty':
+            adv_x.clamp_(-self.radius, self.radius)
+        else:
+            if self.norm_type == 'l2':
+                norm = (adv_x.reshape(adv_x.shape[0],-1)**2).sum(dim=1).sqrt()
+            elif self.norm_type == 'l1':
+                norm = adv_x.reshape(adv_x.shape[0],-1).abs().sum(dim=1)
+            norm = norm.reshape( -1, *( [1] * (len(x.shape)-1) ) )
+            adv_x /= (norm + 1e-10)
+            adv_x *= norm.clamp(max=self.radius)
+        adv_x += x
+        adv_x.clamp_(-0.5, 0.5)
+
+class RandomUniformAttacker():
+    def __init__(self, radius, steps, step_size, random_start, norm_type, ascending=True,uniform_scale=2.0):
+        self.radius = radius / 255.
+        self.norm_type = norm_type
+        self.uniform_scale = uniform_scale
+
+    def perturb(self, model, criterion, x, y):
+        if self.steps==0 or self.radius==0:
+            return x.clone()
+
+        adv_x = x.clone()
+        adv_x += 2 * (torch.rand_like(x) - 0.5) * self.radius * self.uniform_scale
+        self._clip_(adv_x, x)
         return adv_x.data
 
     def _clip_(self, adv_x, x):

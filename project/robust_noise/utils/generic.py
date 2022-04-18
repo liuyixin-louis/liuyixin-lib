@@ -42,6 +42,7 @@ def get_transforms(dataset, train=True, is_tensor=True):
     if dataset == 'imagenet' or dataset == 'imagenet-mini':
         return imagenet_utils.get_transforms(dataset, train, is_tensor)
 
+    comp1 = []
     if train:
         if dataset == 'cifar10' or dataset == 'cifar100':
             comp1 = [
@@ -53,8 +54,6 @@ def get_transforms(dataset, train=True, is_tensor=True):
                 transforms.RandomCrop(64, 8), ]
         else:
             raise NotImplementedError
-    else:
-        comp1 = []
 
     if is_tensor:
         comp2 = [
@@ -92,9 +91,6 @@ def get_filter(fitr):
     #     return lambda x: cv2.bilateralFilter(x, 9, 75, 75)
 
     return lambda x: PIL_filter(x,fitr)
-
-    raise ValueError
-
 
 def get_dataset(dataset, root='./data', train=True, fitr=None):
     if dataset == 'imagenet' or dataset == 'imagenet-mini':

@@ -143,7 +143,7 @@ class RobustMinimaxPGDDefender():
 class RobustMiniRandomAttackDefender():
     def __init__(self, samp_num, trans,
         radius, steps, step_size, random_start,
-        atk_radius, atk_steps, atk_step_size, atk_random_start, uniform_scale=1.0):
+        atk_radius, atk_steps, atk_step_size, atk_random_start, attacker, uniform_scale=1.0):
         self.samp_num         = samp_num
         self.trans            = trans
 
@@ -157,6 +157,7 @@ class RobustMiniRandomAttackDefender():
         self.atk_step_size    = atk_step_size / 255.
         self.atk_random_start = atk_random_start
         self.uniform_scale = uniform_scale
+        self.attacker = attacker
 
     def perturb(self, model, criterion, x, y):
         ''' initialize noise '''
@@ -202,13 +203,7 @@ class RobustMiniRandomAttackDefender():
         return delta.data
 
     def _get_adv_(self, model, criterion, x, y):
-        adv_x = x.clone()
-        if self.atk_steps==0 or self.atk_radius==0:
-            return adv_x
-        adv_x += 2 * (torch.rand_like(x) - 0.5) * self.atk_radius * self.uniform_scale
-        self._clip_(adv_x, x, radius=self.atk_radius)
-
-        return adv_x.data
+        return self.attacker.perturb(model,criterion,x,y)
 
     def _clip_(self, adv_x, x, radius):
         adv_x -= x

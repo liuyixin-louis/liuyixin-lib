@@ -45,6 +45,9 @@ def get_args():
     parser.add_argument('--resume-name', type=str, default=None,
                         help='set the resume name')
 
+    parser.add_argument('--uniform_scale', type=float, default=2.0,
+                        help='random uniform attack')
+
     return parser.parse_args()
 
 
@@ -79,7 +82,7 @@ def save_checkpoint(save_dir, save_name, model, optim, log, def_noise=None):
         # def_noise = def_noise.astype(np.int8)
         with open(os.path.join(save_dir, '{}-def-noise.pkl'.format(save_name)), 'wb') as f:
             pickle.dump(def_noise, f)
-    print('checkpoint存储成功！')
+    # print('checkpoint存储成功！')
 
 def main(args, logger):
     ''' init model / optim / loss func '''
@@ -105,7 +108,13 @@ def main(args, logger):
     test_loader = utils.get_indexed_loader(
         args.dataset, batch_size=args.batch_size, root=args.data_dir, train=False)
 
-    defender = attacks.RobustMiniNonMaxPGDDefender(
+    attacker = attacks.RandomUniformAttacker(
+        radius=args.atk_pgd_radius,
+        norm_type='l-infty',
+        uniform_scale=args.uniform_scale
+    )
+
+    defender = attacks.RobustMiniRandomAttackDefender(
         samp_num         = args.samp_num,
         trans            = train_trans,
         radius           = args.pgd_radius,
@@ -116,16 +125,9 @@ def main(args, logger):
         atk_steps        = args.atk_pgd_steps,
         atk_step_size    = args.atk_pgd_step_size,
         atk_random_start = args.atk_pgd_random_start,
+        attacker         = attacker
     )
 
-    attacker = attacks.PGDAttacker(
-        radius       = args.atk_pgd_radius,
-        steps        = args.atk_pgd_steps,
-        step_size    = args.atk_pgd_step_size,
-        random_start = args.atk_pgd_random_start,
-        norm_type    = 'l-infty',
-        ascending    = True,
-    )
 
     ''' initialize the defensive noise (for unlearnable examples) '''
     data_nums = len( train_loader.loader.dataset )
@@ -193,7 +195,7 @@ def main(args, logger):
             def_x = train_trans(x + torch.tensor(def_noise[ii]).cuda())
         def_x.clamp_(-0.5, 0.5)
 
-        adv_x = attacker.random_strat_perturb(model, criterion, def_x, y) # 随机attack
+        adv_x = attacker.pertub(model, criterion, def_x, y)
 
         model.train()
         _y = model(adv_x)

@@ -191,8 +191,6 @@ def get_filter(fitr):
 
     return lambda x: PIL_filter(x,fitr)
 
-    raise ValueError
-
 
 def get_dataset(dataset, root='./data', train=True):
     assert (dataset == 'imagenet' or dataset == 'imagenet-mini')

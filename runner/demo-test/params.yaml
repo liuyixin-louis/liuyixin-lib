@@ -2,10 +2,14 @@
 template:
   train: >
     python train.py 
-      --model transformer
+      --model {model}
+      --seed {seed}
+      --method {method}
   test: >
     python test.py
-      --model transformer
+      --model {model}
+      --seed {seed}
+      --method {method}
 
 default:
   seed: 2
@@ -16,3 +20,4 @@ resource: [ 0,1,2,3,4,5,6,7 ]
 _title: Expriment
 method: [ old, new ]
 long_epoch: [ True, False ]
+model: [ transformer, resnet ]
