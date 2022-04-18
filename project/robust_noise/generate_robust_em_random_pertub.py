@@ -195,7 +195,7 @@ def main(args, logger):
             def_x = train_trans(x + torch.tensor(def_noise[ii]).cuda())
         def_x.clamp_(-0.5, 0.5)
 
-        adv_x = attacker.pertub(model, criterion, def_x, y)
+        adv_x = attacker.perturb(model, criterion, def_x, y)
 
         model.train()
         _y = model(adv_x)
