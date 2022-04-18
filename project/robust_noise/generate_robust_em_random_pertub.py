@@ -48,6 +48,8 @@ def get_args():
     parser.add_argument('--uniform_scale', type=float, default=2.0,
                         help='random uniform attack')
 
+    parser.add_argument("--attacker",type=str,default="pgd",help="the attacker type")
+
     return parser.parse_args()
 
 
@@ -109,11 +111,21 @@ def main(args, logger):
     test_loader = utils.get_indexed_loader(
         args.dataset, batch_size=args.batch_size, root=args.data_dir, train=False)
 
-    attacker = attacks.RandomUniformAttacker(
-        radius=args.atk_pgd_radius,
-        norm_type='l-infty',
-        uniform_scale=args.uniform_scale
-    )
+    if args.attacker == "random":
+        attacker = attacks.RandomUniformAttacker(
+            radius=args.atk_pgd_radius,
+            norm_type='l-infty',
+            uniform_scale=args.uniform_scale
+        )
+    elif args.attacker == "pgd":
+        attacker = attacks.PGDAttacker(
+            radius=args.atk_pgd_radius,
+            steps=args.atk_pgd_steps,
+            step_size=args.atk_pgd_step_size,
+            random_start=args.atk_pgd_random_start,
+            norm_type='l-infty',
+            ascending=True,
+        )
 
     defender = attacks.RobustMiniRandomAttackDefender(
         samp_num         = args.samp_num,

@@ -9,19 +9,6 @@ class PGDAttacker():
         self.random_start = random_start
         self.norm_type = norm_type
         self.ascending = ascending
-    #
-    # def random_strat_perturb(self, model, criterion, x, y):
-    #     if self.steps==0 or self.radius==0:
-    #         return x.clone()
-    #
-    #     adv_x = x.clone()
-    #     if self.random_start:
-    #         if self.norm_type == 'l-infty':
-    #             adv_x += 2 * (torch.rand_like(x) - 0.5) * self.radius
-    #         else:
-    #             adv_x += 2 * (torch.rand_like(x) - 0.5) * self.radius / self.steps
-    #         self._clip_(adv_x, x)
-    #     return adv_x.data
 
     def perturb(self, model, criterion, x, y):
         if self.steps==0 or self.radius==0:

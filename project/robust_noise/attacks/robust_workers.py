@@ -53,7 +53,7 @@ class RobustPGDAttacker():
 class RobustMinimaxPGDDefender():
     def __init__(self, samp_num, trans,
         radius, steps, step_size, random_start,
-        atk_radius, atk_steps, atk_step_size, atk_random_start):
+        atk_radius, atk_steps, atk_step_size, atk_random_start,attacker):
         self.samp_num         = samp_num
         self.trans            = trans
 
@@ -66,6 +66,7 @@ class RobustMinimaxPGDDefender():
         self.atk_steps        = atk_steps
         self.atk_step_size    = atk_step_size / 255.
         self.atk_random_start = atk_random_start
+        self.attacker  = attacker
 
     def perturb(self, model, criterion, x, y):
         ''' initialize noise '''
@@ -111,27 +112,28 @@ class RobustMinimaxPGDDefender():
         return delta.data
 
     def _get_adv_(self, model, criterion, x, y):
-        adv_x = x.clone()
-        if self.atk_steps==0 or self.atk_radius==0:
-            return adv_x
-
-        if self.atk_random_start:
-            adv_x += 2 * (torch.rand_like(x) - 0.5) * self.atk_radius
-            self._clip_(adv_x, x, radius=self.atk_radius)
-
-        for step in range(self.atk_steps):
-            adv_x.requires_grad_()
-            _y = model(adv_x)
-            loss = criterion(_y, y)
-
-            ''' gradient ascent '''
-            grad = torch.autograd.grad(loss, [adv_x])[0]
-
-            with torch.no_grad():
-                adv_x.add_(torch.sign(grad), alpha=self.atk_step_size)
-                self._clip_(adv_x, x, radius=self.atk_radius)
-
-        return adv_x.data
+        return self.attacker.perturb(model,criterion,x,y)
+        # adv_x = x.clone()
+        # if self.atk_steps==0 or self.atk_radius==0:
+        #     return adv_x
+        #
+        # if self.atk_random_start:
+        #     adv_x += 2 * (torch.rand_like(x) - 0.5) * self.atk_radius
+        #     self._clip_(adv_x, x, radius=self.atk_radius)
+        #
+        # for step in range(self.atk_steps):
+        #     adv_x.requires_grad_()
+        #     _y = model(adv_x)
+        #     loss = criterion(_y, y)
+        #
+        #     ''' gradient ascent '''
+        #     grad = torch.autograd.grad(loss, [adv_x])[0]
+        #
+        #     with torch.no_grad():
+        #         adv_x.add_(torch.sign(grad), alpha=self.atk_step_size)
+        #         self._clip_(adv_x, x, radius=self.atk_radius)
+        #
+        # return adv_x.data
 
     def _clip_(self, adv_x, x, radius):
         adv_x -= x
