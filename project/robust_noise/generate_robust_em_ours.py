@@ -127,7 +127,7 @@ def main(args, logger):
             ascending=True,
         )
 
-    defender = attacks.RobustMiniRandomAttackDefender(
+    defender = attacks.RobustMiniPGDAttackDefender(
         samp_num         = args.samp_num,
         trans            = train_trans,
         radius           = args.pgd_radius,
