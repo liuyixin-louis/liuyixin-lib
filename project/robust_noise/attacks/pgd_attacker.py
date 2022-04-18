@@ -90,7 +90,7 @@ class RandomUniformAttacker():
         self.uniform_scale = uniform_scale
 
     def perturb(self, model, criterion, x, y):
-        if self.steps==0 or self.radius==0:
+        if self.radius==0:
             return x.clone()
 
         adv_x = x.clone()
