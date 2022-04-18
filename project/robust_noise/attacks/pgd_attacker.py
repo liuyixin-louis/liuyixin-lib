@@ -84,7 +84,7 @@ class PGDAttacker():
         adv_x.clamp_(-0.5, 0.5)
 
 class RandomUniformAttacker():
-    def __init__(self, radius, steps, step_size, random_start, norm_type, ascending=True,uniform_scale=2.0):
+    def __init__(self, radius, norm_type,uniform_scale=2.0):
         self.radius = radius / 255.
         self.norm_type = norm_type
         self.uniform_scale = uniform_scale
