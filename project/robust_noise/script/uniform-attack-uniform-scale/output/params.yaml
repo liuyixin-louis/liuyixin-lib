@@ -1,9 +1,7 @@
 ---
 template:
-  cd: >
-    cd /Users/apple/Desktop/workspace/intern/yixin-library/project/robust_noise
   train: >
-    /opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib /ssd2/liuyixin04/miniconda3/envs/py37_torch/bin/python generate_robust_em_random_pertub.py 
+    /opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib /ssd2/liuyixin04/miniconda3/envs/py37_torch/bin/python /ssd2/liuyixin04/workspace/yixin-library/project/robust_noise/generate_robust_em_random_pertub.py 
       --arch {arch} 
       --dataset {dataset} 
       --train-steps {train-steps}
@@ -29,8 +27,9 @@ template:
       --save-dir {_output}
       --save-name {save-name}
       --uniform_scale {uniform_scale}
+      [parallel]
   test: >
-    /opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib /ssd2/liuyixin04/miniconda3/envs/py37_torch/bin/python train.py 
+    cd /ssd2/liuyixin04/workspace/yixin-library/project/robust_noise & /opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib /ssd2/liuyixin04/miniconda3/envs/py37_torch/bin/python /ssd2/liuyixin04/workspace/yixin-library/project/robust_noise/train.py 
       --arch  {arch}
       --dataset {dataset}
       --train-steps  {train-steps-evaluation}
@@ -49,7 +48,8 @@ template:
       --noise-path {_output}/{save-name}-fin-def-noise.pkl 
       --data-dir ~/dataset/ 
       --save-dir {_output} 
-      --save-name {save-name}
+      --save-name {save-name-eval}
+      [parallel]
 
 default:
   arch: resnet18
@@ -74,7 +74,6 @@ default:
   report-freq: 1000
   save-freq: 1000
   data-dir: ~/dataset/
-  save-dir: ./exp_data/cifar10/$expname-random-pertub-noise-$noise_train_step/rem8-4
   save-name: REM
   train-steps-evaluation: 40000
   batch-size-evaluation: 8
@@ -86,8 +85,11 @@ default:
   pgd-step-size-eval: 0.8
   report-freq-eval: 1000
   save-freq-eval: 100000
+  save-name-eval: REMeval
+  
 resource: [ 0,1,2,3,4,5,6,7 ]
 
 ---
 _title: Expriment
-uniform_scale: [ 1.0 ]
+parallel: [True]
+uniform_scale: [ 1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0]

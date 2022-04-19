@@ -6,6 +6,7 @@ import torch
 from tqdm import tqdm
 import utils
 import attacks
+import time
 # from robust_noise.attack import RobustMiniNonMaxPGDDefender
 
 def get_args():
@@ -185,7 +186,8 @@ def main(args, logger):
 
     if args.parallel:
         model = torch.nn.DataParallel(model)
-    for step in tqdm(range(start_step, args.train_steps)):
+    start_time = time.time()
+    for step in range(start_step, args.train_steps):
         lr = args.lr * (args.lr_decay_rate ** (step // args.lr_decay_freq))
         for group in optim.param_groups:
             group['lr'] = lr
@@ -242,8 +244,10 @@ def main(args, logger):
 
     regenerate_def_noise(
         def_noise, model, criterion, train_loader, defender, args.cpu)
-
+    end_time = time.time()
     logger.info('Noise generation finished')
+    total_time = (end_time-start_time)//60
+    logger.info(f'cost {total_time} m')
 
     save_checkpoint(args.save_dir, '{}-fin'.format(args.save_name), model, optim, log, def_noise)
 

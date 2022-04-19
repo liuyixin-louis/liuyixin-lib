@@ -1,8 +1,0 @@
-cd:
-  gpu: '0'
-  state: finished
-test:
-  state: scheduled
-train:
-  gpu: '0'
-  state: failed

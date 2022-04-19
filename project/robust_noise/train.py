@@ -6,6 +6,7 @@ import torch
 from tqdm import tqdm
 import utils
 import attacks
+import time
 
 
 def get_args():
@@ -108,7 +109,8 @@ def main(args, logger):
 
     log = dict()
 
-    for step in tqdm(range(args.train_steps)):
+    start_time = time.time()
+    for step in range(args.train_steps):
         lr = args.lr * (args.lr_decay_rate ** (step // args.lr_decay_freq))
         for group in optim.param_groups:
             group['lr'] = lr
@@ -150,6 +152,8 @@ def main(args, logger):
                         .format( test_acc, test_loss ))
             logger.info('')
 
+    total_time = (end_time-start_time)//60
+    logger.info(f'cost {total_time} m')
     save_checkpoint(args.save_dir, '{}-fin'.format(args.save_name), model, optim, log)
 
     return
