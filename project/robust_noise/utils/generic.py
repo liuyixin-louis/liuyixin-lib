@@ -92,7 +92,7 @@ def get_filter(fitr):
 
     return lambda x: PIL_filter(x,fitr)
 
-def get_dataset(dataset, root='./data', train=True, fitr=None):
+def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None):
     if dataset == 'imagenet' or dataset == 'imagenet-mini':
         return imagenet_utils.get_dataset(dataset, root, train)
 
@@ -102,6 +102,14 @@ def get_dataset(dataset, root='./data', train=True, fitr=None):
     if dataset == 'cifar10':
         target_set = data.datasetCIFAR10(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
+
+        if outside_data:
+            npzfile = np.load('cifar10_ddpm.npz')
+            images = npzfile['image']
+            labels = npzfile['label']
+            x+=images
+            y+=labels
+
     elif dataset == 'cifar100':
         target_set = data.datasetCIFAR100(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
@@ -133,16 +141,18 @@ def get_indexed_loader(dataset, batch_size, root='./data', train=True):
     return loader
 
 
-def get_indexed_tensor_loader(dataset, batch_size, root='./data', train=True):
+def get_indexed_tensor_loader(dataset, batch_size, root='./data', train=True,load_other=True):
     if dataset == 'imagenet' or dataset == 'imagenet-mini':
         return imagenet_utils.get_indexed_tensor_loader(dataset, batch_size, root, train)
 
-    target_set = get_dataset(dataset, root=root, train=train)
-    target_set = data.IndexedTensorDataset(x=target_set.x, y=target_set.y)
 
     if train:
+        target_set = get_dataset(dataset, root=root, train=train,outside_data=load_other)
+        target_set = data.IndexedTensorDataset(x=target_set.x, y=target_set.y)
         loader = data.Loader(target_set, batch_size=batch_size, shuffle=True, drop_last=True)
     else:
+        target_set = get_dataset(dataset, root=root, train=train)
+        target_set = data.IndexedTensorDataset(x=target_set.x, y=target_set.y)
         loader = data.Loader(target_set, batch_size=batch_size, shuffle=False, drop_last=False)
 
     return loader

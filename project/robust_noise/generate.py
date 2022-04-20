@@ -51,6 +51,9 @@ def get_args():
 
     parser.add_argument("--attacker",type=str,default="pgd",help="the attacker type")
 
+    parser.add_argument("--extra_data",type=str,default=None,help="extra data")
+
+
     return parser.parse_args()
 
 
@@ -102,7 +105,7 @@ def main(args, logger):
     # train_loader = utils.Loader(
     #     trainset, batch_size=args.batch_size, shuffle=True, drop_last=True)
     train_loader = utils.get_indexed_tensor_loader(
-        args.dataset, batch_size=args.batch_size, root=args.data_dir, train=True)
+        args.dataset, batch_size=args.batch_size, root=args.data_dir, train=True,load_other=True)
 
     ''' get train transforms '''
     train_trans = utils.get_transforms(
@@ -195,6 +198,7 @@ def main(args, logger):
         x, y, ii = next(train_loader)
         if not args.cpu:
             x, y = x.cuda(), y.cuda()
+
 
         if (step+1) % args.perturb_freq == 0:
             delta = defender.perturb(model, criterion, x, y) # 基于PGD生成噪声
