@@ -187,7 +187,7 @@ def main(args, logger):
     if args.parallel:
         model = torch.nn.DataParallel(model)
     start_time = time.time()
-    for step in range(start_step, args.train_steps):
+    for step in tqdm(range(start_step, args.train_steps)):
         lr = args.lr * (args.lr_decay_rate ** (step // args.lr_decay_freq))
         for group in optim.param_groups:
             group['lr'] = lr
