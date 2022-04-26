@@ -153,7 +153,7 @@ def main(args, logger):
             logger.info('')
 
     total_time = (end_time-start_time)//60
-    logger.info(f'cost {total_time} m')
+    logger.info(f"cost{total_time}m")
     save_checkpoint(args.save_dir, '{}-fin'.format(args.save_name), model, optim, log)
 
     return

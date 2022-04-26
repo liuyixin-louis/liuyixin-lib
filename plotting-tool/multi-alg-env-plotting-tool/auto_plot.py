@@ -1,17 +1,19 @@
 
-import time
+id = "paddle"
+output = f"./result-{id}.png"
+trian_logdir = f"./benchmark-{id}/train_log"
+
 from tensorboard.backend.event_processing import event_accumulator
 import argparse
 import pandas as pd
 from tqdm import tqdm
 import os 
+import time
 
-
-id = "torch"
-trian_logdir = f"/ssd2/liuyixin04/workspace/logs/benchmark-{id}/train_log"
-output = f"/ssd2/liuyixin04/workspace/result-{id}.png"
-timestamp = time.time()
-
+def mkdir(path):
+	folder = os.path.exists(path)
+	if not folder:
+		os.makedirs(path)
 
 g = os.walk(trian_logdir)
 ckpt = []
@@ -37,13 +39,9 @@ for in_path in tqdm(ckpt):
     df.to_csv(f'{in_path}/data.csv',index=False)
     print(in_path)
     # break
-import os
-def mkdir(path):
-	folder = os.path.exists(path)
-	if not folder:
-		os.makedirs(path)
+
 # create dir
-root = f'./tmp-{timestamp}'
+root = f'/ssd2/liuyixin04/workspace/logs/tmp/{id}-tmp-{time.time()}'
 mkdir(root)
 algs = ['MADDPG-continous','MADDPG-discrete']
 for alg in algs:
@@ -73,5 +71,4 @@ for i,csv in enumerate(datalist):
     # os.system(f"rm {csv_old}")
     os.system(f'cp {csv} {path}')
     os.system(f"mv {csv_old} {csv_new}")
-os.system(f'/opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib /ssd2/liuyixin04/miniconda3/envs/py37_paddle/bin/python --path ./tmp --output {output}')
-os.system(f'rm -r {root}')
+os.system(f'/opt/compiler/gcc-8.2/lib/ld-linux-x86-64.so.2 --library-path /opt/compiler/gcc-8.2/lib:/usr/lib64:/ssd2/liuyixin04/miniconda3/envs/py37_paddle/lib:/home/work/cuda-10.0/lib64/:/home/work/cudnn_v7.4/cuda/lib64/:/ssd2/liuyixin04/.jumbo/lib /ssd2/liuyixin04/miniconda3/envs/py37_paddle/bin/python /ssd2/liuyixin04/workspace/my-repo-yixin/auto-plot-yixin/result-drawing-master/draw_benchmark.py --path {root} --output {output}')
