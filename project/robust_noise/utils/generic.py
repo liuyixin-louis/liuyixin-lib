@@ -52,7 +52,7 @@ def get_transforms(dataset, train=True, is_tensor=True):
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(64, 8), ]
-        elif dataset == 'svhn' or dataset == "mnist":
+        elif dataset == 'svhn' or dataset == "mnist" or dataset == "mnist-mini":
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(32, 4), ]
@@ -129,6 +129,12 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
         # pass
         target_set = data.datasetSVHN(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.labels
+    elif dataset == "mnist-mini":
+        # the first three class
+        target_set = data.datasetMNIST(root=root, train=train, transform=transform)
+        x, y = target_set.data.unsqueeze(3), target_set.targets
+        idx = np.where(np.array(target_set.targets) < 3)[0]
+        x, y = x[idx], y[idx]
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
 
@@ -262,7 +268,7 @@ def get_arch(arch, dataset):
         in_dims, out_dims = 3, 1000
     elif dataset == 'imagenet-mini':
         in_dims, out_dims = 3, 100
-    elif dataset == "mnist":
+    elif dataset == "mnist" or dataset == "mnist-mini":
         in_dims, out_dims = 1, 10
     elif dataset == "svhn":
         in_dims, out_dims = 3, 10
