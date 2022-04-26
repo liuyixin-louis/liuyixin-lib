@@ -110,7 +110,7 @@ def main(args, logger):
     log = dict()
 
     start_time = time.time()
-    for step in range(args.train_steps):
+    for step in tqdm(range(args.train_steps)):
         lr = args.lr * (args.lr_decay_rate ** (step // args.lr_decay_freq))
         for group in optim.param_groups:
             group['lr'] = lr
