@@ -244,6 +244,16 @@ class RobustMiniPGDAttackDefender():
             
         return adv_x.data
 
+    def _get_adv_random_(self, model, criterion, x, y):
+        adv_x = x.clone()
+        if self.atk_steps == 0 or self.atk_radius == 0:
+            return adv_x
+
+        if self.atk_random_start:
+            adv_x += 2 * (torch.rand_like(x) - 0.5) * self.atk_radius
+            self._clip_(adv_x, x, radius=self.atk_radius)
+        return adv_x.data
+
     def _clip_(self, adv_x, x, radius):
         adv_x -= x
         adv_x.clamp_(-radius, radius)
