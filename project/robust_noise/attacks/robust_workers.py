@@ -205,7 +205,37 @@ class RobustMiniPGDAttackDefender():
         return delta.data
 
     def _get_adv_(self, model, criterion, x, y):
-        return self.attacker.perturb(model,criterion,x,y)
+        # return self.attacker.perturb(model,criterion,x,y)
+        adv_x = x.clone()
+        if self.atk_steps == 0 or self.atk_radius == 0:
+            return adv_x
+
+        if self.atk_random_start:
+            adv_x += 2 * (torch.rand_like(x) - 0.5) * self.atk_radius
+            self._clip_(adv_x, x, radius=self.atk_radius)
+
+        ''' temporarily shutdown autograd of model to improve pgd efficiency '''
+        model.eval()
+        for pp in model.parameters():
+            pp.requires_grad = False
+
+        for step in range(self.atk_steps):
+            adv_x.requires_grad_()
+            _y = model(adv_x)
+            loss = criterion(_y, y)
+
+            ''' gradient ascent '''
+            grad = torch.autograd.grad(loss, [adv_x])[0]
+
+            with torch.no_grad():
+                adv_x.add_(torch.sign(grad), alpha=self.atk_step_size)
+                self._clip_(adv_x, x, radius=self.atk_radius)
+
+        ''' reopen autograd of model after pgd '''
+        for pp in model.parameters():
+            pp.requires_grad = True
+            
+        return adv_x.data
 
     def _clip_(self, adv_x, x, radius):
         adv_x -= x
