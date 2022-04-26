@@ -1,5 +1,5 @@
 import torch
-
+import time
 
 class RobustPGDAttacker():
     def __init__(self, samp_num, trans,
@@ -178,8 +178,9 @@ class RobustMiniPGDAttackDefender():
         delta.requires_grad_()
         for step in range(self.steps):
             delta.grad = None
-
+            s1 = time.time()
             for i in range(self.samp_num):
+                s3 = time.time()
                 def_x = self.trans( (x + delta * 255).clamp(0., 255.) )
                 adv_x = self._get_adv_(model, criterion, def_x.data, y) # 找对抗噪声
 
@@ -191,12 +192,18 @@ class RobustMiniPGDAttackDefender():
 
                 upd_lo = (def_x * gd).sum()
                 upd_lo.backward()
+                s4 = time.time()
+                print(f"{s4-s3}s to conduct one attack sample!")
 
             with torch.no_grad():
                 grad = delta.grad.data
                 grad.mul_(-1)
                 delta.add_(torch.sign(grad), alpha=self.step_size)
                 delta.clamp_(-self.radius, self.radius)
+
+            s2 = time.time()
+            print(f"{s2-s1}s to conduct one step defense noise training!")
+            
 
         ''' re-enable autograd of model after pgd '''
         for pp in model.parameters():
