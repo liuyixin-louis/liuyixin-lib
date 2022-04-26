@@ -82,6 +82,10 @@ def main(args, logger):
         def_noise = np.zeros([data_nums, 3, 64, 64], dtype=np.float16)
     elif args.dataset == 'imagenet-mini':
         def_noise = np.zeros([data_nums, 3, 224, 224], dtype=np.float16)
+    elif args.dataset == 'mnist':
+        def_noise = np.zeros([data_nums, 1, 28, 28], dtype=np.float16)
+    elif args.dataset == "svhn":
+        def_noise = np.zeros([data_nums, 3, 32, 32], dtype=np.float16)
     else:
         raise NotImplementedError
 

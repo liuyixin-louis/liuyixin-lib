@@ -4,6 +4,9 @@ import torch
 import torchvision
 import os
 import pickle
+# from torchvision import datasets
+# from torchvision import transforms
+# import torchsample.transforms as tstf
 
 
 class ElementWiseTransform():
@@ -71,6 +74,14 @@ class IndexedDataset():
         return len(self.x)
 
 
+def datasetMNIST(root='./path', train=True, transform=None):
+    return torchvision.datasets.MNIST(root=root, train=train,
+                        transform=transform, download=True)
+
+def datasetSVHN(root='./path', train=True, transform=None):
+    return torchvision.datasets.SVHN(root=root, split="train" if train else "test",
+                        transform=transform, download=True)
+
 def datasetCIFAR10(root='./path', train=True, transform=None):
     return torchvision.datasets.CIFAR10(root=root, train=train,
                         transform=transform, download=True)
@@ -108,6 +119,53 @@ def datasetTinyImageNet(root='./path', train=True, transform=None):
     # exit()
     # return Dataset(xx, yy, transform)
 
+#
+# def prepare_imagenet(args):
+#     dataset_dir = os.path.join(args.data_dir, args.dataset)
+#     train_dir = os.path.join(dataset_dir, 'train')
+#     val_dir = os.path.join(dataset_dir, 'val', 'images')
+#     kwargs = {} if args.no_cuda else {'num_workers': 1, 'pin_memory': True}
+#
+#     # Pre-calculated mean & std on imagenet:
+#     # norm = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+#     # For other datasets, we could just simply use 0.5:
+#     # norm = transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+#
+#     print('Preparing dataset ...')
+#     # Normalization
+#     norm = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) \
+#         if args.pretrained else transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+#
+#     # Normal transformation
+#     if args.pretrained:
+#         train_trans = [transforms.RandomHorizontalFlip(), transforms.RandomResizedCrop(224),
+#                        transforms.ToTensor()]
+#         val_trans = [transforms.Resize(256), transforms.CenterCrop(224), transforms.ToTensor(), norm]
+#     else:
+#         train_trans = [transforms.RandomHorizontalFlip(), transforms.ToTensor()]
+#         val_trans = [transforms.ToTensor(), norm]
+#
+#     # Data augmentation (torchsample)
+#     # torchsample doesn't really help tho...
+#     if args.ts:
+#         train_trans += [tstf.Gamma(0.7),
+#                         tstf.Brightness(0.2),
+#                         tstf.Saturation(0.2)]
+#
+#     train_data = datasets.ImageFolder(train_dir,
+#                                       transform=transforms.Compose(train_trans + [norm]))
+#
+#     val_data = datasets.ImageFolder(val_dir,
+#                                     transform=transforms.Compose(val_trans))
+#
+#     print('Preparing data loaders ...')
+#     train_data_loader = torch.utils.data.DataLoader(train_data, batch_size=args.batch_size,
+#                                                     shuffle=True, **kwargs)
+#
+#     val_data_loader = torch.utils.data.DataLoader(val_data, batch_size=args.test_batch_size,
+#                                                   shuffle=True, **kwargs)
+#
+#     return train_data_loader, val_data_loader, train_data, val_data
 
 class Loader():
     def __init__(self, dataset, batch_size, shuffle=False, drop_last=False, num_workers=4):
