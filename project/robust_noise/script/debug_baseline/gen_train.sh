@@ -28,11 +28,17 @@ $so --library-path $lib $py generate.py \
     --save-freq 1000 \
     --data-dir ./data \
     --save-dir ./exp_data/cifar10/noise/rem8-4 \
+<<<<<<< HEAD
     --save-name rem \
     --attacker pgd \
     --parallel
     # --cpu
 # $so --library-path  $lib $py train.py \
+=======
+    --save-name rem
+    --attacker pgd
+# python train.py \
+>>>>>>> 806d9ff0908da31053a8088e2128d5396b015c12
 #     --arch resnet18 \
 #     --dataset cifar10 \
 #     --train-steps 40000 \
@@ -52,5 +58,9 @@ $so --library-path $lib $py generate.py \
 #     --noise-path ./exp_data/cifar10/noise/rem8-4/rem-fin-def-noise.pkl \
 #     --data-dir ./data \
 #     --save-dir ./exp_data/cifar10/train/rem8-4/r4 \
+<<<<<<< HEAD
 #     --save-name train \
 #     --parallel
+=======
+#     --save-name train
+>>>>>>> 806d9ff0908da31053a8088e2128d5396b015c12

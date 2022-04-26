@@ -52,16 +52,21 @@ def get_transforms(dataset, train=True, is_tensor=True):
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(64, 8), ]
+        elif dataset == 'svhn' or dataset == "mnist":
+            comp1 = [
+                transforms.RandomHorizontalFlip(),
+                transforms.RandomCrop(32, 4), ]
         else:
             raise NotImplementedError
 
+    C = 3 if dataset!="mnist" else 1
     if is_tensor:
         comp2 = [
-            torchvision.transforms.Normalize((255*0.5, 255*0.5, 255*0.5), (255., 255., 255.))]
+            torchvision.transforms.Normalize((255*0.5)*C, (255.)*C)]
     else:
         comp2 = [
             transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5), (1., 1., 1.))]
+            transforms.Normalize((0.5)*C, (1.)*C)]
 
     trans = transforms.Compose( [*comp1, *comp2] )
 
@@ -92,7 +97,7 @@ def get_filter(fitr):
 
     return lambda x: PIL_filter(x,fitr)
 
-def get_dataset(dataset, root='./data', train=True, fitr=None):
+def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None):
     if dataset == 'imagenet' or dataset == 'imagenet-mini':
         return imagenet_utils.get_dataset(dataset, root, train)
 
@@ -102,12 +107,28 @@ def get_dataset(dataset, root='./data', train=True, fitr=None):
     if dataset == 'cifar10':
         target_set = data.datasetCIFAR10(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
+
+        # if outside_data:
+        #     npzfile = np.load('cifar10_ddpm.npz')
+        #     images = npzfile['image']
+        #     labels = npzfile['label']
+        #     x+=images
+        #     y+=labels
+
     elif dataset == 'cifar100':
         target_set = data.datasetCIFAR100(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
     elif dataset == 'tiny-imagenet':
         target_set = data.datasetTinyImageNet(root=root, train=train, transform=transform)
         x, y = target_set.x, target_set.y
+    elif dataset == "mnist":
+        # pass
+        target_set = data.datasetMNIST(root=root, train=train, transform=transform)
+        x, y = target_set.data.unsqueeze(3), target_set.targets
+    elif dataset == "svhn":
+        # pass
+        target_set = data.datasetSVHN(root=root, train=train, transform=transform)
+        x, y = target_set.data, target_set.labels
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
 
@@ -133,16 +154,18 @@ def get_indexed_loader(dataset, batch_size, root='./data', train=True,parallel=F
     return loader
 
 
-def get_indexed_tensor_loader(dataset, batch_size, root='./data', train=True):
+def get_indexed_tensor_loader(dataset, batch_size, root='./data', train=True,load_other=True):
     if dataset == 'imagenet' or dataset == 'imagenet-mini':
         return imagenet_utils.get_indexed_tensor_loader(dataset, batch_size, root, train)
 
-    target_set = get_dataset(dataset, root=root, train=train)
-    target_set = data.IndexedTensorDataset(x=target_set.x, y=target_set.y)
 
     if train:
+        target_set = get_dataset(dataset, root=root, train=train,outside_data=load_other)
+        target_set = data.IndexedTensorDataset(x=target_set.x, y=target_set.y)
         loader = data.Loader(target_set, batch_size=batch_size, shuffle=True, drop_last=True)
     else:
+        target_set = get_dataset(dataset, root=root, train=train)
+        target_set = data.IndexedTensorDataset(x=target_set.x, y=target_set.y)
         loader = data.Loader(target_set, batch_size=batch_size, shuffle=False, drop_last=False)
 
     return loader
@@ -239,6 +262,10 @@ def get_arch(arch, dataset):
         in_dims, out_dims = 3, 1000
     elif dataset == 'imagenet-mini':
         in_dims, out_dims = 3, 100
+    elif dataset == "mnist":
+        in_dims, out_dims = 1, 10
+    elif dataset == "svhn":
+        in_dims, out_dims = 3, 10
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
 
@@ -281,6 +308,7 @@ def get_optim(optim, params, lr=0.1, weight_decay=1e-4, momentum=0.9):
 
 
 def generic_init(args):
+    import logging
     if os.path.exists(args.save_dir) == False:
         os.makedirs(args.save_dir)
 
