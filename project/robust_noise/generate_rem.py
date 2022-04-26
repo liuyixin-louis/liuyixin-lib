@@ -217,7 +217,7 @@ def main(args, logger):
             # def_noise[ii] = delta.cpu().numpy()
             def_noise[ii] = (delta.cpu().numpy() * 255).round().astype(np.int8)
             s2 = time.time()
-            print(f"{s2-s1}s use to produce defense noise!")
+            # print(f"{s2-s1}s use to produce defense noise!")
 
         ######## update model theta ##############
         if args.cpu:
