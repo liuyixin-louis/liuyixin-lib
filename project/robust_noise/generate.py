@@ -7,7 +7,9 @@ from tqdm import tqdm
 import utils
 import attacks
 import time
+import torch.distributed as dist
 # from robust_noise.attack import RobustMiniNonMaxPGDDefender
+# os.environ['CUDA_VISIBLE_DEVICES']='0,1,2,3,4,5,6,7'
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -50,6 +52,9 @@ def get_args():
                         help='random uniform attack')
 
     parser.add_argument("--attacker",type=str,default="pgd",help="the attacker type")
+
+    # parser.add_argument('--local_rank', default=0, type=int,
+    #                 help='node rank for distributed training')
 
     return parser.parse_args()
 
@@ -185,9 +190,12 @@ def main(args, logger):
             def_noise = pickle.load(f)
 
     if args.parallel:
+        # torch.distributed.init_process_group(backend="nccl")
+        # import torch.nn.parallel as parallel
+        # model = nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], output_device=args.local_rank, find_unused_parameters=True)
         model = torch.nn.DataParallel(model)
     start_time = time.time()
-    for step in range(start_step, args.train_steps):
+    for step in tqdm(range(start_step, args.train_steps)):
         lr = args.lr * (args.lr_decay_rate ** (step // args.lr_decay_freq))
         for group in optim.param_groups:
             group['lr'] = lr
@@ -257,6 +265,9 @@ def main(args, logger):
 if __name__ == '__main__':
     args = get_args()
     logger = utils.generic_init(args)
+
+    # dist.init_process_group(backend='nccl')
+    # torch.cuda.set_device(args.local_rank)
 
     logger.info('EXP: robust minimax pgd perturbation')
     try:

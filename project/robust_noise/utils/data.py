@@ -110,8 +110,14 @@ def datasetTinyImageNet(root='./path', train=True, transform=None):
 
 
 class Loader():
-    def __init__(self, dataset, batch_size, shuffle=False, drop_last=False, num_workers=4):
-        self.loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)
+    def __init__(self, dataset, batch_size, shuffle=False, drop_last=False, num_workers=4,parallel=False):
+        # if parallel:
+        #     self.sampler = torch.utils.data.distributed.DistributedSampler(dataset)
+        #     self.loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, \
+        #         drop_last=drop_last, sampler=self.sampler,pin_memory=False)
+        # else:
+        self.loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, \
+            drop_last=drop_last, num_workers=num_workers)
         self.iterator = None
 
     def __iter__(self):

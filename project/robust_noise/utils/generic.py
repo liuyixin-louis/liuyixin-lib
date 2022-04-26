@@ -114,7 +114,7 @@ def get_dataset(dataset, root='./data', train=True, fitr=None):
     return data.Dataset(x, y, transform, lp_fitr)
 
 
-def get_indexed_loader(dataset, batch_size, root='./data', train=True):
+def get_indexed_loader(dataset, batch_size, root='./data', train=True,parallel=False):
     if dataset == 'imagenet' or dataset == 'imagenet-mini':
         return imagenet_utils.get_indexed_loader(dataset, batch_size, root, train)
 
@@ -126,9 +126,9 @@ def get_indexed_loader(dataset, batch_size, root='./data', train=True):
         target_set = data.Dataset(x=target_set.x, y=target_set.y, transform=target_set.transform)
 
     if train:
-        loader = data.Loader(target_set, batch_size=batch_size, shuffle=True, drop_last=True)
+        loader = data.Loader(target_set, batch_size=batch_size, shuffle=True, drop_last=True,parallel=parallel)
     else:
-        loader = data.Loader(target_set, batch_size=batch_size, shuffle=False, drop_last=False)
+        loader = data.Loader(target_set, batch_size=batch_size, shuffle=False, drop_last=False,parallel=parallel)
 
     return loader
 
