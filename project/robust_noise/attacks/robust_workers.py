@@ -212,7 +212,8 @@ class RobustMiniPGDAttackDefender():
         return delta.data
 
     def _get_adv_(self, model, criterion, x, y):
-        # return self.attacker.perturb(model,criterion,x,y)
+        if self.attacker == "random":
+            return self._get_adv_random_(model, criterion, x, y)
         adv_x = x.clone()
         if self.atk_steps == 0 or self.atk_radius == 0:
             return adv_x

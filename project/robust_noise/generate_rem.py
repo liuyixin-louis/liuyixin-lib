@@ -55,6 +55,8 @@ def get_args():
 
     parser.add_argument("--extra_data",type=str,default=None,help="extra data")
 
+    parser.add_argument("--defense_model_adv",type=str,default="pgd",help="the attacker type that model in the defender")
+
 
     return parser.parse_args()
 
@@ -146,7 +148,7 @@ def main(args, logger):
         atk_steps        = args.atk_pgd_steps,
         atk_step_size    = args.atk_pgd_step_size,
         atk_random_start = args.atk_pgd_random_start,
-        attacker         = attacker
+        attacker         = args.defense_model_adv
     )
     # elif
 
