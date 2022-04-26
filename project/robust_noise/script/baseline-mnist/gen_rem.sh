@@ -7,11 +7,11 @@ export CUDA_VISIBLE_DEVICES=3
 
 $lib $pyt generate_rem.py \
     --arch resnet18 \
-    --dataset mnist \
-    --train-steps 100 \
-    --batch-size 256 \
+    --dataset mnist-mini \
+    --train-steps 703 \
+    --batch-size 128 \
     --optim sgd \
-    --lr 0.2 \
+    --lr 0.1 \
     --lr-decay-rate 0.1 \
     --lr-decay-freq 2000 \
     --weight-decay 5e-4 \
