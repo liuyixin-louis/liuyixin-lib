@@ -193,7 +193,7 @@ class RobustMiniPGDAttackDefender():
                 upd_lo = (def_x * gd).sum()
                 upd_lo.backward()
                 s4 = time.time()
-                print(f"{s4-s3}s to conduct one attack sample!")
+                # print(f"{s4-s3}s to conduct one attack sample!")
 
             with torch.no_grad():
                 grad = delta.grad.data
