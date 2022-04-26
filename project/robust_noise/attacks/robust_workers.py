@@ -202,7 +202,7 @@ class RobustMiniPGDAttackDefender():
                 delta.clamp_(-self.radius, self.radius)
 
             s2 = time.time()
-            print(f"{s2-s1}s to conduct one step defense noise training!")
+            # print(f"{s2-s1}s to conduct one step defense noise training!")
             
 
         ''' re-enable autograd of model after pgd '''
