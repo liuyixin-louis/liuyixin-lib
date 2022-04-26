@@ -231,7 +231,7 @@ def main(args, logger):
         s3 = time.time()
         adv_x = attacker.perturb(model, criterion, def_x, y)
         s4 = time.time()
-        print(f"{s4-s3}s use to conduct pgd attack to produce adv example!")
+        # print(f"{s4-s3}s use to conduct pgd attack to produce adv example!")
 
         model.train()
         _y = model(adv_x)
