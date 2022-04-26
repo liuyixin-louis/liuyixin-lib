@@ -211,11 +211,13 @@ def main(args, logger):
         if not args.cpu:
             x, y = x.cuda(), y.cuda()
 
-
+        s1 = time.time()
         if (step+1) % args.perturb_freq == 0:
             delta = defender.perturb(model, criterion, x, y) # 基于PGD生成噪声
             # def_noise[ii] = delta.cpu().numpy()
             def_noise[ii] = (delta.cpu().numpy() * 255).round().astype(np.int8)
+            s2 = time.time()
+            print(f"{s2-s1}s use to produce defense noise!")
 
         ######## update model theta ##############
         if args.cpu:
@@ -226,7 +228,10 @@ def main(args, logger):
             def_x = train_trans(x + torch.tensor(def_noise[ii]).cuda())
         def_x.clamp_(-0.5, 0.5)
 
+        s3 = time.time()
         adv_x = attacker.perturb(model, criterion, def_x, y)
+        s4 = time.time()
+        print(f"{s4-s3}s use to conduct pgd attack to produce adv example!")
 
         model.train()
         _y = model(adv_x)
