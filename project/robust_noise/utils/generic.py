@@ -52,7 +52,7 @@ def get_transforms(dataset, train=True, is_tensor=True):
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(64, 8), ]
-        elif dataset == 'svhn' or "mnist" in dataset:
+        elif 'svhn' in dataset or "mnist" in dataset:
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(32, 4), ]
@@ -129,6 +129,22 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
         # pass
         target_set = data.datasetSVHN(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.labels
+    elif dataset == "svhn-extreme":
+        # pass
+        target_set = data.datasetSVHN(root=root, train=train, transform=transform)
+        # x, y = target_set.data, target_set.labels
+        x, y = target_set.data, target_set.labels
+        if train:
+            idx = np.where(np.array(target_set.labels) < 3)[0]
+            x, y = x[idx], y[idx]
+        else:
+            x_, y_ = [], []
+            for i in range(3):
+                idx = np.where(np.array(target_set.labels) == i)[0]
+                idx = idx[::5]
+                x_.append(x[idx])
+                y_.append(y[idx])
+            x, y = np.concatenate(x_), np.concatenate(y_)
     elif dataset == "mnist-mini":
         # the first three class
         target_set = data.datasetMNIST(root=root, train=train, transform=transform)
@@ -286,7 +302,7 @@ def get_arch(arch, dataset):
         in_dims, out_dims = 3, 100
     elif "mnist" in dataset:
         in_dims, out_dims = 1, 10
-    elif dataset == "svhn":
+    elif "svhn" in dataset:
         in_dims, out_dims = 3, 10
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
