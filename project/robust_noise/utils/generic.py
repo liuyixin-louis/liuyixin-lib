@@ -134,7 +134,9 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
         target_set = data.datasetSVHN(root=root, train=train, transform=transform)
         # x, y = target_set.data, target_set.labels
         x, y = target_set.data, target_set.labels
-        if train:
+        # print("load shape")
+        # print(x.shape)
+        if train is False:
             idx = np.where(np.array(target_set.labels) < 3)[0]
             x, y = x[idx], y[idx]
         else:
@@ -145,6 +147,8 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
                 x_.append(x[idx])
                 y_.append(y[idx])
             x, y = np.concatenate(x_), np.concatenate(y_)
+        # print("load shape")
+        # print(x.shape)
     elif dataset == "mnist-mini":
         # the first three class
         target_set = data.datasetMNIST(root=root, train=train, transform=transform)

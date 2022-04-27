@@ -181,6 +181,8 @@ class RobustMiniPGDAttackDefender():
             s1 = time.time()
             for i in range(self.samp_num):
                 s3 = time.time()
+                print('preinput')
+                print((x + delta).shape)
                 def_x = self.trans( (x + delta * 255).clamp(0., 255.) )
                 adv_x = self._get_adv_(model, criterion, def_x.data, y) # 找对抗噪声
 
