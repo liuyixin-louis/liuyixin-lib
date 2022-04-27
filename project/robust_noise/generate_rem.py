@@ -163,9 +163,9 @@ def main(args, logger):
         # def_noise = np.zeros([data_nums, 3, 256, 256], dtype=np.float16)
         def_noise = np.zeros([data_nums, 3, 256, 256], dtype=np.int8)
     elif args.dataset == 'mnist' or args.dataset == "mnist-mini":
-        def_noise = np.zeros([data_nums, 1, 28, 28], dtype=np.float16)
+        def_noise = np.zeros([data_nums, 1, 28, 28], dtype=np.int8)
     elif args.dataset == "svhn":
-        def_noise = np.zeros([data_nums, 3, 32, 32], dtype=np.float16)
+        def_noise = np.zeros([data_nums, 3, 32, 32], dtype=np.int8)
     else:
         raise NotImplementedError
 
