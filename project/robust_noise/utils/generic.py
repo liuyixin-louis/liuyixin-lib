@@ -124,7 +124,7 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
     elif dataset == "mnist":
         # pass
         target_set = data.datasetMNIST(root=root, train=train, transform=transform)
-        x, y = target_set.data, target_set.targets
+        x, y = target_set.data.unsqueeze(3), target_set.targets
     elif dataset == "svhn":
         # pass
         target_set = data.datasetSVHN(root=root, train=train, transform=transform)
