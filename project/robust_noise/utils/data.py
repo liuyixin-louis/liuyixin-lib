@@ -49,7 +49,13 @@ class Dataset():
 
         ''' data augmentation '''
         if self.transform is not None:
-            x = self.transform( Image.fromarray(x) )
+            # if x.shape[0] == 1:
+            #     print("asda")
+            #     x = np.squeeze(x, axis=2)
+            # print(x.shape)
+            x = Image.fromarray(x.squeeze(2))
+            x = self.transform(x)
+        
 
         return x, y
 

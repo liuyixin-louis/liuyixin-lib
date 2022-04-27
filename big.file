@@ -1,0 +1,14 @@
+project/robust_noise/exp_data/cifar10/baseline-noise-10000/rem8-4/rembaseline-ckpt-2000-def-noise.pkl
+data/cifar10/baseline-noise-10000/rem8-4/rembaseline-ckpt-2000-def-noise.pkl
+project/robust_noise/exp_data/cifar10/double-uniform-random-attack-random-pertub-noise-5000/rem8-4/random_attack-ckpt-4000-def-noise.pkl
+data/cifar10/double-uniform-random-attack-random-pertub-noise-5000/rem8-4/random_attack-ckpt-4000-def-noise.pkl
+project/robust_noise/exp_data/cifar10/baseline-noise/rem8-4/rembaseline-ckpt-5000-def-noise.pkl
+data/cifar10/baseline-noise/rem8-4/rembaseline-ckpt-5000-def-noise.pkl
+project/robust_noise/exp_data/cifar10/random-pertub-noise/rem8-4/random_attack-ckpt-2000-def-noise.pkl
+data/cifar10/random-pertub-noise/rem8-4/random_attack-ckpt-2000-def-noise.pkl
+project/robust_noise/exp_data/cifar10/double-uniform-random-attack-random-pertub-noise-5000/rem8-4/random_attack-ckpt-5000-def-noise.pkl
+data/cifar10/double-uniform-random-attack-random-pertub-noise-5000/rem8-4/random_attack-ckpt-5000-def-noise.pkl
+
+
+
+

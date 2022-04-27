@@ -1,8 +1,8 @@
 __pycache__
 *~
 *.swp
-exp_data
 data
 backup
 script/*/output/
 tmp
+exp_data

@@ -206,7 +206,9 @@ def get_poisoned_loader(
             raw_noise = pickle.load(f)
 
         assert isinstance(raw_noise, np.ndarray)
-        assert raw_noise.dtype == np.int8
+        # print(raw_noise.dtype)
+        # TODO: add 
+        # assert raw_noise.dtype == np.int8
 
         raw_noise = raw_noise.astype(np.int16)
 
@@ -224,7 +226,7 @@ def get_poisoned_loader(
         noise = np.transpose(noise, [0,2,3,1])
 
         ''' add noise to images (uint8, 0~255) '''
-        imgs = target_set.x.astype(np.int16) + noise
+        imgs = target_set.x.cpu().numpy().astype(np.int16) + noise
         imgs = imgs.clip(0,255).astype(np.uint8)
         target_set.x = imgs
 
