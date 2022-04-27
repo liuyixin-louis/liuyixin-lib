@@ -59,7 +59,7 @@ def get_transforms(dataset, train=True, is_tensor=True):
         else:
             raise NotImplementedError
 
-    C = 3 if dataset!="mnist" else 1
+    C = 3 if "mnist" not in dataset else 1
     if is_tensor:
         comp2 = [
             torchvision.transforms.Normalize((255*0.5)*C, (255.)*C)]
