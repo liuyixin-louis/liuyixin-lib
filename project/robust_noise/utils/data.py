@@ -53,7 +53,7 @@ class Dataset():
             #     print("asda")
             #     x = np.squeeze(x, axis=2)
             # print(x.shape)
-            x = Image.fromarray(x.squeeze(2))
+            x = Image.fromarray(x)
             x = self.transform(x)
         
 
