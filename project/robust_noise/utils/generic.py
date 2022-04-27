@@ -135,9 +135,22 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
         x, y = target_set.data.unsqueeze(3), target_set.targets
         idx = np.where(np.array(target_set.targets) < 3)[0]
         x, y = x[idx], y[idx]
+    elif dataset == "mnist-extreme":
+        # the first three class
+        target_set = data.datasetMNIST(root=root, train=train, transform=transform)
+        x, y = target_set.data.unsqueeze(3), target_set.targets
+        if train:
+            idx = np.where(np.array(target_set.targets) < 3)[0]
+            x, y = x[idx], y[idx]
+        else:
+            x_, y_ = [],[]
+            for i in range(3):
+                idx = np.where(np.array(target_set.targets) == i)[0]
+                x_.append(x[idx])
+                y_.append(y[idx])
+            x, y = np.concatenate(x_), np.concatenate(y_)
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
-
     return data.Dataset(x, y, transform, lp_fitr)
 
 
