@@ -6,3 +6,5 @@
 2022-04-27 03:25:23,595 [main] ERROR c.b.agile.agent.register.Register 69 - register return: code:902, error:query agent from db error! same agent has started up!
 2022-04-27 03:53:00,577 [main] INFO  c.b.a.agent.common.http.HttpClient 204 - POST https://icoding.baidu-int.com/agent/v1/register:200
 2022-04-27 03:53:00,617 [main] ERROR c.b.agile.agent.register.Register 69 - register return: code:902, error:query agent from db error! same agent has started up!
+2022-04-27 03:53:53,899 [main] INFO  c.b.a.agent.common.http.HttpClient 204 - POST https://icoding.baidu-int.com/agent/v1/register:200
+2022-04-27 03:53:53,939 [main] ERROR c.b.agile.agent.register.Register 69 - register return: code:902, error:query agent from db error! same agent has started up!

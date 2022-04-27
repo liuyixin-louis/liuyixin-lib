@@ -28,7 +28,7 @@ $lib $pyt generate_rem.py \
     --report-freq 1000 \
     --save-freq 1000 \
     --data-dir ./data \
-    --save-dir ./exp_data/mnist/noise-random/rem8-4 \
+    --save-dir ./exp_data/mnist/noise-random-2/rem8-4 \
     --save-name rem \
     --parallel \
     --defense_model_adv random
