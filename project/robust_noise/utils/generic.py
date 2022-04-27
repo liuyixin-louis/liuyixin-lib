@@ -172,6 +172,7 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
             x, y = np.concatenate(x_), np.concatenate(y_)
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
+    print(x.shape[0])
     return data.Dataset(x, y, transform, lp_fitr)
 
 
