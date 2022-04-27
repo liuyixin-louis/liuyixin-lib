@@ -52,7 +52,7 @@ def get_transforms(dataset, train=True, is_tensor=True):
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(64, 8), ]
-        elif dataset == 'svhn' or dataset == "mnist" or dataset == "mnist-mini":
+        elif dataset == 'svhn' or "mnist" in dataset:
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(32, 4), ]
@@ -146,6 +146,7 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
             x_, y_ = [],[]
             for i in range(3):
                 idx = np.where(np.array(target_set.targets) == i)[0]
+                idx = idx[::5]
                 x_.append(x[idx])
                 y_.append(y[idx])
             x, y = np.concatenate(x_), np.concatenate(y_)
@@ -281,7 +282,7 @@ def get_arch(arch, dataset):
         in_dims, out_dims = 3, 1000
     elif dataset == 'imagenet-mini':
         in_dims, out_dims = 3, 100
-    elif dataset == "mnist" or dataset == "mnist-mini":
+    elif "mnist" in dataset:
         in_dims, out_dims = 1, 10
     elif dataset == "svhn":
         in_dims, out_dims = 3, 10

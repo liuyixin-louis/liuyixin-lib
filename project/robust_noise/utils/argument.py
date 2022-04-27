@@ -8,7 +8,7 @@ def add_shared_args(parser):
                         choices=['resnet18', 'resnet50', 'vgg11-bn', 'vgg16-bn', 'vgg19-bn', 'densenet-121', 'inception-resnet-v1', 'inception-v3', 'wrn-34-10'],
                         help='choose the model architecture')
     parser.add_argument('--dataset', type=str, default='cifar10',
-                        choices=['cifar10', 'cifar100', 'tiny-imagenet', 'imagenet-mini', 'svhn', 'mnist','mnist-mini'],
+                        # choices=['cifar10', 'cifar100', 'tiny-imagenet', 'imagenet-mini', 'svhn', 'mnist','mnist-mini'],
                         help='choose the dataset')
     parser.add_argument('--train-steps', type=int, default=80000,
                         help='set the training steps')
