@@ -70,7 +70,7 @@ def load_pretrained_model(model, arch, pre_state_dict):
 
 
 def regenerate_def_noise(def_noise, model, criterion, loader, defender, cpu):
-    for x, y, ii in loader:
+    for x, y, ii in tqdm(loader):
         if not cpu: x, y = x.cuda(), y.cuda()
         # delta = torch.zeros_like(x.data)
         delta = defender.perturb(model, criterion, x, y)
