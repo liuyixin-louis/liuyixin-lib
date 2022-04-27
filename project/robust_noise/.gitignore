@@ -5,3 +5,4 @@ data
 backup
 script/*/output/
 tmp
+exp_data
