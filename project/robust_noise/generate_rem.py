@@ -7,6 +7,7 @@ from tqdm import tqdm
 import utils
 import attacks
 import time
+from torch.optim.lr_scheduler import ExponentialLR
 import torch.distributed as dist
 # from robust_noise.attack import RobustMiniNonMaxPGDDefender
 # os.environ['CUDA_VISIBLE_DEVICES']='0,1,2,3,4,5,6,7'
@@ -57,6 +58,10 @@ def get_args():
 
     parser.add_argument("--defense_model_adv",type=str,default="pgd",help="the attacker type that model in the defender")
 
+    parser.add_argument("--total_train_epoch",type=int,default=10,help="the toatl epoch of training")
+
+    # parser.add_argument("--defense_model_adv",type=str,default="pgd",help="the attacker type that model in the defender")
+    # parser.add_argument("--defense_model_adv",type=str,default="pgd",help="the attacker type that model in the defender")
 
     return parser.parse_args()
 
@@ -280,9 +285,6 @@ def main(args, logger):
 if __name__ == '__main__':
     args = get_args()
     logger = utils.generic_init(args)
-
-    # dist.init_process_group(backend='nccl')
-    # torch.cuda.set_device(args.local_rank)
 
     logger.info('EXP: robust minimax pgd perturbation')
     try:

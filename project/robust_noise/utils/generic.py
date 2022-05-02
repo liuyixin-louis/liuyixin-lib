@@ -107,14 +107,12 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
     if dataset == 'cifar10':
         target_set = data.datasetCIFAR10(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
-
         # if outside_data:
         #     npzfile = np.load('cifar10_ddpm.npz')
         #     images = npzfile['image']
         #     labels = npzfile['label']
         #     x+=images
         #     y+=labels
-
     elif dataset == 'cifar100':
         target_set = data.datasetCIFAR100(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
@@ -125,26 +123,27 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
         # pass
         target_set = data.datasetMNIST(root=root, train=train, transform=transform)
         x, y = target_set.data.unsqueeze(3), target_set.targets
-    elif dataset == "svhn":
+    elif dataset == "svhn" or dataset == "svhn-extreme":
         # pass
         target_set = data.datasetSVHN(root=root, train=train, transform=transform)
-        x, y = target_set.data, target_set.labels
-    elif dataset == "svhn-extreme":
+        x, y = target_set.data.transpose(0,3,2,1), target_set.labels
+    # elif dataset == "svhn-extreme":
         # pass
-        target_set = data.datasetSVHN(root=root, train=train, transform=transform)
+        # target_set = data.datasetSVHN(root=root, train=train, transform=transform)
+        # # x, y = target_set.data, target_set.labels
         # x, y = target_set.data, target_set.labels
-        x, y = target_set.data, target_set.labels
-        if train:
-            idx = np.where(np.array(target_set.labels) < 3)[0]
-            x, y = x[idx], y[idx]
-        else:
-            x_, y_ = [], []
-            for i in range(3):
-                idx = np.where(np.array(target_set.labels) == i)[0]
-                idx = idx[::5]
-                x_.append(x[idx])
-                y_.append(y[idx])
-            x, y = np.concatenate(x_), np.concatenate(y_)
+        if dataset == "svhn-extreme":
+            if train is False:
+                idx = np.where(np.array(target_set.labels) < 3)[0]
+                x, y = x[idx], y[idx]
+            else:
+                x_, y_ = [], []
+                for i in range(3):
+                    idx = np.where(np.array(target_set.labels) == i)[0]
+                    idx = idx[::5]
+                    x_.append(x[idx])
+                    y_.append(y[idx])
+                x, y = np.concatenate(x_), np.concatenate(y_)
     elif dataset == "mnist-mini":
         # the first three class
         target_set = data.datasetMNIST(root=root, train=train, transform=transform)
@@ -155,7 +154,7 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
         # the first three class
         target_set = data.datasetMNIST(root=root, train=train, transform=transform)
         x, y = target_set.data.unsqueeze(3), target_set.targets
-        if train:
+        if train is False:
             idx = np.where(np.array(target_set.targets) < 3)[0]
             x, y = x[idx], y[idx]
         else:
@@ -168,6 +167,7 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
             x, y = np.concatenate(x_), np.concatenate(y_)
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
+    assert x.shape[1] == x.shape[2]
     return data.Dataset(x, y, transform, lp_fitr)
 
 

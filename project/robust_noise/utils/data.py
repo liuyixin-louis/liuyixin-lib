@@ -26,8 +26,8 @@ class IndexedTensorDataset():
     def __getitem__(self, idx):
         x, y = self.x[idx], self.y[idx]
         ''' transform HWC pic to CWH pic '''
-        # x = torch.tensor(x, dtype=torch.float32).permute(2,0,1)
-        x = torch.tensor(x, dtype=torch.float32)
+        x = torch.tensor(x, dtype=torch.float32).permute(2,0,1)
+        # x = torch.tensor(x, dtype=torch.float32)
         return x, y, idx
 
     def __len__(self):
@@ -42,6 +42,8 @@ class Dataset():
         self.fitr = fitr
 
     def __getitem__(self, idx):
+        assert False
+
         x, y = self.x[idx], self.y[idx]
 
         ''' low pass filtering '''
