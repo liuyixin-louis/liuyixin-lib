@@ -42,7 +42,7 @@ class Dataset():
         self.fitr = fitr
 
     def __getitem__(self, idx):
-        assert False
+        # assert False
 
         x, y = self.x[idx], self.y[idx]
 
