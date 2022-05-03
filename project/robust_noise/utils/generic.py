@@ -106,6 +106,7 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
 
 
     def simplify_dataset(x,y,train=True,class_num=3,num_reduce=5,mode="mini"):
+        y = np.array(y)
         if mode == "mini":
             idx = np.where(np.array(y) < class_num)[0]
             x, y = x[idx], y[idx]
