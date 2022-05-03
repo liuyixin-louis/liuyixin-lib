@@ -1,4 +1,5 @@
-cd $(dirname $(dirname $(dirname "$0")))
+root="/mnt/yixin/liuyixin-lib/project/robust_noise"
+cd $root
 source activate py38
 export CUDA_VISIBLE_DEVICES=0
 python train.py \
