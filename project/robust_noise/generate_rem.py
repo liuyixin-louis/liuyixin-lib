@@ -113,7 +113,7 @@ def main(args, logger):
     # trainset = utils.IndexedTensorDataset(trainset.x, trainset.y)
     # train_loader = utils.Loader(
     #     trainset, batch_size=args.batch_size, shuffle=True, drop_last=True)
-    train_loader = utils.get_indexed_t ensor_loader(
+    train_loader = utils.get_indexed_tensor_loader(
         args.dataset, batch_size=args.batch_size, root=args.data_dir, train=True,load_other=True)
 
     ''' get train transforms '''
