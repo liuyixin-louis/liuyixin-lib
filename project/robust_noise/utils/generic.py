@@ -289,13 +289,13 @@ def get_clear_loader(
 
 
 def get_arch(arch, dataset):
-    if dataset == 'cifar10':
+    if 'cifar10' in dataset :
         in_dims, out_dims = 3, 10
-    elif dataset == 'cifar100':
+    elif 'cifar100' in dataset:
         in_dims, out_dims = 3, 100
-    elif dataset == 'tiny-imagenet':
-        in_dims, out_dims = 3, 200
-    elif dataset == 'imagenet':
+    # elif 'tiny-imagenet' in dataset:
+    #     in_dims, out_dims = 3, 200
+    elif 'imagenet' in 'imagenet' :
         in_dims, out_dims = 3, 1000
     # elif dataset == 'imagenet-mini':
     #     in_dims, out_dims = 3, 100
@@ -303,8 +303,8 @@ def get_arch(arch, dataset):
         in_dims, out_dims = 1, 10
     elif "svhn" in dataset:
         in_dims, out_dims = 3, 10
-    else:
-        raise NotImplementedError('dataset {} is not supported'.format(dataset))
+    # else:
+    #     raise NotImplementedError('dataset {} is not supported'.format(dataset))
 
     if "mini" in dataset or "extreme" in dataset:
         out_dims = 3
