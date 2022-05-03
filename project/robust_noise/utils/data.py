@@ -58,6 +58,8 @@ class Dataset():
             # print(x.shape)
             if x.shape[2] == 1:
                 x = np.squeeze(x, axis=2)
+            if type(x) == torch.Tensor:
+                x = x.cpu().numpy()
             x = Image.fromarray(x)
             x = self.transform(x)
         

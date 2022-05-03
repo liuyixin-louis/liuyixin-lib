@@ -242,7 +242,10 @@ def get_poisoned_loader(
         noise = np.transpose(noise, [0,2,3,1])
 
         ''' add noise to images (uint8, 0~255) '''
-        imgs = target_set.x.cpu().numpy().astype(np.int16) + noise
+        try:
+            imgs = target_set.x.cpu().numpy().astype(np.int16) + noise
+        except Exception as e:
+            imgs = target_set.x.astype(np.int16) + noise
         imgs = imgs.clip(0,255).astype(np.uint8)
         target_set.x = imgs
 
