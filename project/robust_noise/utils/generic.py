@@ -44,7 +44,7 @@ def get_transforms(dataset, train=True, is_tensor=True):
 
     comp1 = []
     if train:
-        if dataset == 'cifar10' or dataset == 'cifar100':
+        if 'cifar10' in dataset   or 'cifar100' in dataset:
             comp1 = [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(32, 4), ]
