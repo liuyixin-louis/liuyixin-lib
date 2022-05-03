@@ -104,7 +104,26 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
     transform = get_transforms(dataset, train=train, is_tensor=False)
     lp_fitr   = None if fitr is None else get_filter(fitr)
 
-    if dataset == 'cifar10':
+
+    def simplify_dataset(x,y,train=True,class_num=3,num_reduce=5,mode="mini"):
+        if mode == "mini":
+            idx = np.where(np.array(y) < class_num)[0]
+            x, y = x[idx], y[idx]
+        elif mode == "extreme":
+            if train:
+                x_, y_ = [], []
+                for i in range(class_num):
+                    idx = np.where(np.array(y) == i)[0]
+                    idx = idx[::num_reduce]
+                    x_.append(x[idx])
+                    y_.append(y[idx])
+                x, y = np.concatenate(x_), np.concatenate(y_)
+            else:
+                idx = np.where(np.array(y) < class_num)[0]
+                x, y = x[idx], y[idx]
+        return x, y
+
+    if 'cifar10' in dataset:
         target_set = data.datasetCIFAR10(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
         # if outside_data:
@@ -113,58 +132,35 @@ def get_dataset(dataset, root='./data', train=True, fitr=None,outside_data=None)
         #     labels = npzfile['label']
         #     x+=images
         #     y+=labels
-    elif dataset == 'cifar100':
+        if "extreme" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="extreme")
+        elif "mini" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="mini")
+    elif 'cifar100' in dataset:
         target_set = data.datasetCIFAR100(root=root, train=train, transform=transform)
         x, y = target_set.data, target_set.targets
+        if "extreme" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="extreme")
+        elif "mini" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="mini")
+
     elif dataset == 'tiny-imagenet':
         target_set = data.datasetTinyImageNet(root=root, train=train, transform=transform)
         x, y = target_set.x, target_set.y
-    elif dataset == "mnist":
-        # pass
-        target_set = data.datasetMNIST(root=root, train=train, transform=transform)
-        x, y = target_set.data.unsqueeze(3), target_set.targets
-    elif dataset == "svhn" or dataset == "svhn-extreme":
-        # pass
+    elif "svhn" in dataset:
         target_set = data.datasetSVHN(root=root, train=train, transform=transform)
         x, y = target_set.data.transpose(0,3,2,1), target_set.labels
-    # elif dataset == "svhn-extreme":
-        # pass
-        # target_set = data.datasetSVHN(root=root, train=train, transform=transform)
-        # # x, y = target_set.data, target_set.labels
-        # x, y = target_set.data, target_set.labels
-        if dataset == "svhn-extreme":
-            if train is False:
-                idx = np.where(np.array(target_set.labels) < 3)[0]
-                x, y = x[idx], y[idx]
-            else:
-                x_, y_ = [], []
-                for i in range(3):
-                    idx = np.where(np.array(target_set.labels) == i)[0]
-                    idx = idx[::5]
-                    x_.append(x[idx])
-                    y_.append(y[idx])
-                x, y = np.concatenate(x_), np.concatenate(y_)
-    elif dataset == "mnist-mini":
-        # the first three class
+        if "extreme" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="extreme")
+        elif "mini" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="mini")
+    elif "mnist" in dataset:
         target_set = data.datasetMNIST(root=root, train=train, transform=transform)
         x, y = target_set.data.unsqueeze(3), target_set.targets
-        idx = np.where(np.array(target_set.targets) < 3)[0]
-        x, y = x[idx], y[idx]
-    elif dataset == "mnist-extreme":
-        # the first three class
-        target_set = data.datasetMNIST(root=root, train=train, transform=transform)
-        x, y = target_set.data.unsqueeze(3), target_set.targets
-        if train is False:
-            idx = np.where(np.array(target_set.targets) < 3)[0]
-            x, y = x[idx], y[idx]
-        else:
-            x_, y_ = [],[]
-            for i in range(3):
-                idx = np.where(np.array(target_set.targets) == i)[0]
-                idx = idx[::5]
-                x_.append(x[idx])
-                y_.append(y[idx])
-            x, y = np.concatenate(x_), np.concatenate(y_)
+        if "extreme" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="extreme")
+        elif "mini" in dataset:
+            x,y = simplify_dataset(x,y,train=train,class_num=3,num_reduce=5,mode="mini")
     else:
         raise NotImplementedError('dataset {} is not supported'.format(dataset))
     assert x.shape[1] == x.shape[2]
