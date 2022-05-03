@@ -10,8 +10,8 @@ attack_r=4
 protect_r=8
 
 noise_train_step=$(((train_epoch*training_sample)/batch_size))
-down_lr_step=$((train_step/2))
-report_step=$((train_step/2))
+down_lr_step=$((noise_train_step/2))
+report_step=$((noise_train_step/2))
 train_eval_step=$((noise_train_step*2))
 train_eval_lr_decay_step=$((train_eval_step/2))
 report_step_eval=$((train_eval_step/2))
