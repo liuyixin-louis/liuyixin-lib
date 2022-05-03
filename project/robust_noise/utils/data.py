@@ -56,6 +56,8 @@ class Dataset():
             #     print("asda")
             #     x = np.squeeze(x, axis=2)
             # print(x.shape)
+            if x.shape[2] == 1:
+                x = np.squeeze(x, axis=2)
             x = Image.fromarray(x)
             x = self.transform(x)
         
