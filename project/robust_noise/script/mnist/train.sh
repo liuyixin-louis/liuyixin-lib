@@ -17,7 +17,7 @@ python train.py \
     --pgd-steps 10 \
     --pgd-step-size 0.8 \
     --pgd-random-start \
-    --report-freq 1000 \
+    --report-freq 100 \
     --save-freq 100000 \
     --noise-path ./exp_data/mnist-extreme/noise-test/rem8-4/rem-fin-def-noise.pkl \
     --data-dir ./data \
