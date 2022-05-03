@@ -160,15 +160,15 @@ def main(args, logger):
 
     ''' initialize the defensive noise (for unlearnable examples) '''
     data_nums = len( train_loader.loader.dataset )
-    if args.dataset == 'cifar10' or args.dataset == 'cifar100':
+    if "cifar10" in args.dataset or 'cifar100' in args.dataset:
         # def_noise = np.zeros([data_nums, 3, 32, 32], dtype=np.float16)
         def_noise = np.zeros([data_nums, 3, 32, 32], dtype=np.int8)
-    elif args.dataset == 'tiny-imagenet':
-        # def_noise = np.zeros([data_nums, 3, 64, 64], dtype=np.float16)
-        def_noise = np.zeros([data_nums, 3, 64, 64], dtype=np.int8)
-    elif args.dataset == 'imagenet-mini':
-        # def_noise = np.zeros([data_nums, 3, 256, 256], dtype=np.float16)
-        def_noise = np.zeros([data_nums, 3, 256, 256], dtype=np.int8)
+    # elif args.dataset == 'tiny-imagenet':
+    #     # def_noise = np.zeros([data_nums, 3, 64, 64], dtype=np.float16)
+    #     def_noise = np.zeros([data_nums, 3, 64, 64], dtype=np.int8)
+    # elif args.dataset == 'imagenet-mini':
+    #     # def_noise = np.zeros([data_nums, 3, 256, 256], dtype=np.float16)
+    #     def_noise = np.zeros([data_nums, 3, 256, 256], dtype=np.int8)
     elif "mnist" in args.dataset:
         def_noise = np.zeros([data_nums, 1, 28, 28], dtype=np.int8)
     elif "svhn" in args.dataset:
